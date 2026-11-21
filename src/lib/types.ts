@@ -2,6 +2,9 @@ export type Level = 5 | 4 | 3 | 2;
 export type ItemType = "kanji" | "vocabulary";
 export type ReviewMode = "meaning" | "reading";
 
+export type Profile = { id: string; nickname: string; target_level: Level; friend_code: string; };
+export type FriendStat = { user_id: string; nickname: string; kanji_learned: number; vocab_learned: number; reviews_last_7d: number; };
+
 export type KanjiRow = {
   id: string;
   character: string;
@@ -19,6 +22,12 @@ export type VocabularyRow = {
   jlpt_level: Level;
   example_ja: string | null;
   example_ko: string | null;
+};
+
+export type VocabularyKanjiRow = {
+  vocabulary_id: string;
+  kanji_id: string;
+  position: number;
 };
 
 export type ReviewRow = {
