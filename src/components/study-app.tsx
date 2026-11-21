@@ -17,9 +17,9 @@ type ReviewLog = { reviewed_at: string };
 function dayKey(date: Date) {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
 }
-function dayStreak(logs: ReviewLog[]) {
+function dayStreak(logs: ReviewLog[], nowMs: number) {
   const days = new Set(logs.map(log => dayKey(new Date(log.reviewed_at))));
-  let cursor = new Date();
+  let cursor = new Date(nowMs);
   if (!days.has(dayKey(cursor))) cursor = new Date(cursor.getTime() - 86_400_000);
   let count = 0;
   while (days.has(dayKey(cursor)) && count < 365) {
@@ -34,6 +34,7 @@ export default function StudyApp() {
   const client = useMemo(() => getSupabase(), []);
   const [user, setUser] = useState<User | null>(null);
   const [authReady, setAuthReady] = useState(false);
+  const [nowMs, setNowMs] = useState(() => Date.now());
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -104,6 +105,7 @@ export default function StudyApp() {
         if (friendsError) throw friendsError;
         setPeople((friends??[]) as {id:string;nickname:string}[]);
       } else setPeople([]);
+      setNowMs(Date.now());
       setError("");
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "학습 정보를 가져오지 못했어요.");
@@ -113,19 +115,25 @@ export default function StudyApp() {
   }, [client,user]);
 
   useEffect(() => {
-    if (user) void refresh();
-    else {
-      setProfile(null);
-      setKanji([]);
-      setVocabulary([]);
-      setLinks([]);
-      setReviewRows([]);
-      setLogs([]);
-      setQueue([]);
-      setRequests([]);
-      setPeople([]);
-      setStats([]);
-    }
+    let cancelled = false;
+    // Schedule after the effect so React state isn't synchronously cascaded.
+    void Promise.resolve().then(() => {
+      if (cancelled) return;
+      if (user) void refresh();
+      else {
+        setProfile(null);
+        setKanji([]);
+        setVocabulary([]);
+        setLinks([]);
+        setReviewRows([]);
+        setLogs([]);
+        setQueue([]);
+        setRequests([]);
+        setPeople([]);
+        setStats([]);
+      }
+    });
+    return () => { cancelled = true; };
   }, [user,refresh]);
 
   const targetLevel=profile?.target_level ?? 5;
@@ -134,8 +142,8 @@ export default function StudyApp() {
   const dueCards=useMemo(()=>cards.filter(c=>isDue(reviewsByKey.get(c.key))),[cards,reviewsByKey]);
   const kanjiLearned=new Set(reviewRows.filter(r=>r.item_type==="kanji").map(r=>r.item_id)).size;
   const wordsLearned=new Set(reviewRows.filter(r=>r.item_type==="vocabulary").map(r=>r.item_id)).size;
-  const streak=dayStreak(logs);
-  const lastWeekCount=logs.filter(log=>Date.now()-new Date(log.reviewed_at).getTime()<7*86_400_000).length;
+  const streak=dayStreak(logs,nowMs);
+  const lastWeekCount=logs.filter(log=>nowMs-new Date(log.reviewed_at).getTime()<7*86_400_000).length;
   const currentCard=queue[reviewIndex]??null;
   const finished=queue.length>0 && reviewIndex>=queue.length;
 
@@ -183,6 +191,7 @@ export default function StudyApp() {
       setReviewRows(existing=>[...existing.filter(r=>cardKey(r.item_type,r.item_id,r.review_mode)!==currentCard.key),row]);
       if (!logError) setLogs(existing=>[{reviewed_at:new Date().toISOString()},...existing]);
       else setError("복습 진도는 저장했지만 통계 기록에 실패했어요. 새로고침 후 확인해 주세요.");
+      setNowMs(Date.now());
       setReviewIndex(i=>i+1);
       setRevealed(false);
     } catch(cause) {
