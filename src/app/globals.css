@@ -181,3 +181,5 @@ h1,h2,h3,h4,p { margin: 0; }
 @media (min-width: 700px) { .app-shell { border-left:1px solid var(--line); border-right:1px solid var(--line); } }
 @media (max-width: 360px) { .content { padding:18px 14px; } .topbar { padding-inline:14px; } .hero-panel { padding:24px 19px; } .stat-box { padding:12px 8px; } .feature-card { padding:13px; } }
 @media (prefers-reduced-motion: reduce) { *, *:before, *:after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; } }
+
+.word-list summary { min-height: 44px; padding-block: 12px; cursor: pointer; }

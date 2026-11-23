@@ -4,8 +4,8 @@
     "word": "把握",
     "reading": "はあく",
     "meaning_ko": "파악",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "まず被害の状況を把握する必要がある。",
+    "example_ko": "우선 피해 상황을 파악할 필요가 있다.",
     "id": "dfccf1ab-086c-5430-ac28-06a8ccf2b45f"
   },
   {
@@ -13,8 +13,8 @@
     "word": "撤回",
     "reading": "てっかい",
     "meaning_ko": "철회",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "説明に誤りがあり、先ほどの発言を撤回した。",
+    "example_ko": "설명에 오류가 있어 방금 한 발언을 철회했다.",
     "id": "6e6e119c-f4b9-5cf9-a7e3-723bb47f8334"
   },
   {
@@ -22,8 +22,8 @@
     "word": "妥協",
     "reading": "だきょう",
     "meaning_ko": "타협",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "費用は抑えても、安全の面では妥協できない。",
+    "example_ko": "비용을 줄이더라도 안전 면에서는 타협할 수 없다.",
     "id": "9344bc80-a09a-5006-9474-25f637842d4f"
   },
   {
@@ -31,8 +31,8 @@
     "word": "促進",
     "reading": "そくしん",
     "meaning_ko": "촉진",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "市は公共交通の利用を促進する方針だ。",
+    "example_ko": "시는 대중교통 이용을 촉진할 방침이다.",
     "id": "a10d9b46-0ed6-53e3-91d4-ad966c106e5b"
   },
   {
@@ -40,8 +40,8 @@
     "word": "繁栄",
     "reading": "はんえい",
     "meaning_ko": "번영",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "この町は貿易の拠点として繁栄した。",
+    "example_ko": "이 도시는 무역 거점으로 번영했다.",
     "id": "1161514e-6632-5aab-bb3a-4b15c24413b3"
   },
   {
@@ -49,8 +49,8 @@
     "word": "応募",
     "reading": "おうぼ",
     "meaning_ko": "응모",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "応募する前に募集要項をよく読んだ。",
+    "example_ko": "지원하기 전에 모집 요강을 꼼꼼히 읽었다.",
     "id": "cfa21e04-17eb-54ce-9ecb-d024894f1ebe"
   },
   {
@@ -58,8 +58,8 @@
     "word": "承認",
     "reading": "しょうにん",
     "meaning_ko": "승인",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "計画を変更するには責任者の承認が必要です。",
+    "example_ko": "계획을 변경하려면 책임자의 승인이 필요합니다.",
     "id": "e7c219af-72f2-56e8-b843-f8d6b4d2bc09"
   },
   {
@@ -67,8 +67,8 @@
     "word": "評価",
     "reading": "ひょうか",
     "meaning_ko": "평가",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "結果だけでなく、工夫した点も評価された。",
+    "example_ko": "결과뿐만 아니라 궁리한 점도 좋은 평가를 받았다.",
     "id": "3336eb03-5e9a-597c-93de-14de35e4cbe7"
   },
   {
@@ -76,8 +76,8 @@
     "word": "予定",
     "reading": "よてい",
     "meaning_ko": "예정",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "雨が降ったら予定を変えましょう。",
+    "example_ko": "비가 오면 일정을 바꿔요.",
     "id": "fcc8d9f9-1900-559a-9839-b5a4e51884c4"
   },
   {
@@ -85,8 +85,8 @@
     "word": "連絡",
     "reading": "れんらく",
     "meaning_ko": "연락",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "駅に着いたら連絡してください。",
+    "example_ko": "역에 도착하면 연락해 주세요.",
     "id": "f80a9f86-0108-5eb4-962d-7ce03e5914dc"
   },
   {
@@ -94,8 +94,8 @@
     "word": "遅刻",
     "reading": "ちこく",
     "meaning_ko": "지각",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "電車が遅れて授業に遅刻しました。",
+    "example_ko": "전철이 늦어져서 수업에 지각했어요.",
     "id": "d13a3bc2-0f0d-515b-a841-97a6f26ca9ee"
   },
   {
@@ -103,8 +103,8 @@
     "word": "家族",
     "reading": "かぞく",
     "meaning_ko": "가족",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "週末は家族と過ごします。",
+    "example_ko": "주말에는 가족과 함께 보내요.",
     "id": "0d743657-9edf-56b7-9ad4-263f5b9e0d6b"
   },
   {
@@ -112,8 +112,62 @@
     "word": "料理",
     "reading": "りょうり",
     "meaning_ko": "요리",
-    "example_ja": null,
-    "example_ko": null,
+    "example_ja": "この料理の作り方を教えてください。",
+    "example_ko": "이 요리를 만드는 방법을 알려 주세요.",
     "id": "f4a8387c-c0c8-5c5a-922f-114961ee3016"
+  },
+  {
+    "id": "6711424d-323d-5311-87f2-73d317054f76",
+    "word": "準備",
+    "reading": "じゅんび",
+    "meaning_ko": "준비",
+    "jlpt_level": 4,
+    "example_ja": "出発の準備ができました。",
+    "example_ko": "출발 준비가 끝났어요."
+  },
+  {
+    "id": "da41888a-f437-5013-954a-1e966d2a6208",
+    "word": "確認",
+    "reading": "かくにん",
+    "meaning_ko": "확인",
+    "jlpt_level": 4,
+    "example_ja": "予約の日時をもう一度確認してください。",
+    "example_ko": "예약 날짜와 시간을 한 번 더 확인해 주세요."
+  },
+  {
+    "id": "60f28858-5a30-5d96-bc8f-55cd9f64cb87",
+    "word": "対策",
+    "reading": "たいさく",
+    "meaning_ko": "대책",
+    "jlpt_level": 3,
+    "example_ja": "大雨に備えて対策を考えています。",
+    "example_ko": "폭우에 대비해 대책을 생각하고 있어요."
+  },
+  {
+    "id": "4b7f3a87-f234-5acf-b650-adcacbe6324a",
+    "word": "判断",
+    "reading": "はんだん",
+    "meaning_ko": "판단",
+    "jlpt_level": 3,
+    "example_ja": "一人で判断せず、担当者に相談してください。",
+    "example_ko": "혼자 판단하지 말고 담당자에게 상의해 주세요."
+  },
+  {
+    "id": "f721e72b-a727-52dd-b110-915264c284a2",
+    "word": "見通し",
+    "reading": "みとおし",
+    "meaning_ko": "전망·예측",
+    "jlpt_level": 2,
+    "example_ja": "復旧の見通しはまだ立っていない。",
+    "example_ko": "복구 전망은 아직 서지 않았다."
+  },
+  {
+    "id": "4c95535c-9bf7-5149-93f6-f4f7e85f6559",
+    "word": "是正",
+    "reading": "ぜせい",
+    "meaning_ko": "시정·바로잡음",
+    "jlpt_level": 1,
+    "example_ja": "監査の結果を受けて、手続きの不備を是正した。",
+    "example_ko": "감사 결과에 따라 절차상의 미비점을 바로잡았다."
   }
 ]

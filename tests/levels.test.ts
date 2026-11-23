@@ -12,3 +12,24 @@ test("graded kanji match the five non-cumulative source counts and retain N5 rev
   assert.ok(graded.every(k => /[가-힣]/.test(k.meaning_ko)));
   assert.deepEqual(new Set(graded.filter(k => k.jlpt_level === 5).map(k => k.id)), new Set(n5.map(k => k.id)));
 });
+
+test("every catalogue entry has a Korean gloss and every bundled word has a bilingual example", () => {
+  const catalogue = JSON.parse(readFileSync("public/data/joyo.json", "utf8")) as {
+    character: string; meaning: string; meaning_ko: string;
+  }[];
+  assert.equal(catalogue.length, 2136);
+  for (const entry of catalogue) {
+    assert.match(entry.meaning_ko, /[가-힣]/, entry.character);
+    assert.ok(entry.meaning.trim(), entry.character);
+  }
+  const words = [
+    ...JSON.parse(readFileSync("src/data/n5.json", "utf8")).vocabulary,
+    ...JSON.parse(readFileSync("src/data/example-words.json", "utf8")),
+  ];
+  assert.equal(new Set(words.map(word => word.word + ":" + word.reading)).size, words.length);
+  for (const word of words) {
+    assert.match(word.meaning_ko, /[가-힣]/, word.word);
+    assert.match(word.example_ja, /[ぁ-んァ-ヶ]/, word.word);
+    assert.match(word.example_ko, /[가-힣]/, word.word);
+  }
+});

@@ -30,7 +30,7 @@ export default function LearningView(props: Props & { onScore: (card: StudyCard,
       <button aria-pressed={!browse} className={!browse ? "active" : ""} onClick={() => setBrowse(false)}>문제 풀기</button>
       <button aria-pressed={browse} className={browse ? "active" : ""} onClick={() => setBrowse(true)}>목록 보기</button>
     </div>}
-    {catalogue ? <KanjiCatalogue key={scope} basic={scope === "basic"}/> :
+    {catalogue ? <KanjiCatalogue vocabulary={props.vocabulary} key={scope} basic={scope === "basic"}/> :
       browse ? <CourseLibrary key={scope} {...props} targetLevel={level}/> :
       <Practice key={scope} {...props} level={level}/>}
   </div>;

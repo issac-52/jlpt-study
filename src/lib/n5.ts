@@ -16,7 +16,13 @@ export function includeN5(kanji: KanjiRow[], vocabulary: VocabularyRow[], links:
   }
   for (const entry of [...course.vocabulary, ...examples]) {
     const key = entry.word + ":" + entry.reading;
-    words.set(key, { ...(words.get(key) ?? entry), jlpt_level: entry.jlpt_level as Level });
+    const existing = words.get(key);
+    const hasExample = existing?.example_ja && existing.example_ko;
+    words.set(key, {
+      ...entry, ...existing, jlpt_level: entry.jlpt_level as Level,
+      example_ja: hasExample ? existing.example_ja : entry.example_ja,
+      example_ko: hasExample ? existing.example_ko : entry.example_ko,
+    });
   }
   const relations = new Map(links.map(link => [link.vocabulary_id + ":" + link.kanji_id, link]));
   for (const word of words.values()) {

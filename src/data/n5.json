@@ -1153,8 +1153,8 @@
    "reading": "ひとつ",
    "meaning_ko": "하나",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "りんごを一つください。",
+   "example_ko": "사과 한 개 주세요."
   },
   {
    "id": "5ccdadb2-b98b-52b7-8e34-c5864976e76a",
@@ -1162,8 +1162,8 @@
    "reading": "ふたつ",
    "meaning_ko": "둘",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "箱が二つあります。",
+   "example_ko": "상자가 두 개 있어요."
   },
   {
    "id": "b31e877f-9270-5b37-8d74-1c9c5d4900d5",
@@ -1171,8 +1171,8 @@
    "reading": "ここのつ",
    "meaning_ko": "아홉",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "丸を九つ書いてください。",
+   "example_ko": "동그라미를 아홉 개 그려 주세요."
   },
   {
    "id": "e190e1c5-6e1f-50f7-8d09-c29f6a9a89d5",
@@ -1180,8 +1180,8 @@
    "reading": "ななつ",
    "meaning_ko": "일곱",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "袋にみかんが七つ入っています。",
+   "example_ko": "봉지에 귤이 일곱 개 들어 있어요."
   },
   {
    "id": "b561a092-8a84-5469-9220-9cb55fb2779e",
@@ -1189,8 +1189,8 @@
    "reading": "ひと",
    "meaning_ko": "사람",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "あの人は私の先生です。",
+   "example_ko": "저 사람은 제 선생님이에요."
   },
   {
    "id": "2ed29a4f-bdfa-553f-848f-7e4a41f5a887",
@@ -1198,8 +1198,8 @@
    "reading": "はいる",
    "meaning_ko": "들어가다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "部屋に入る前にノックします。",
+   "example_ko": "방에 들어가기 전에 노크해요."
   },
   {
    "id": "d2832b9e-8689-5758-bf40-630d3fbee945",
@@ -1207,8 +1207,8 @@
    "reading": "やっつ",
    "meaning_ko": "여덟",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "クッキーを八つ焼きました。",
+   "example_ko": "쿠키를 여덟 개 구웠어요."
   },
   {
    "id": "187251bd-923b-53f6-a71a-2224194903bf",
@@ -1216,8 +1216,8 @@
    "reading": "とお",
    "meaning_ko": "열",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "十までゆっくり数えましょう。",
+   "example_ko": "열까지 천천히 세어 봐요."
   },
   {
    "id": "bd6017da-4b59-51ef-bb1a-e6d0f90e769f",
@@ -1225,8 +1225,8 @@
    "reading": "みっつ",
    "meaning_ko": "셋",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "卵を三つ使います。",
+   "example_ko": "달걀을 세 개 써요."
   },
   {
    "id": "0117bf7a-ab9d-50d4-83a5-2447987d94b1",
@@ -1234,8 +1234,8 @@
    "reading": "うえ",
    "meaning_ko": "위",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "本は机の上にあります。",
+   "example_ko": "책은 책상 위에 있어요."
   },
   {
    "id": "24ab21ac-8d82-5cc7-add1-4f7e2fca5937",
@@ -1243,8 +1243,8 @@
    "reading": "した",
    "meaning_ko": "아래",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "猫がいすの下で寝ています。",
+   "example_ko": "고양이가 의자 아래에서 자고 있어요."
   },
   {
    "id": "6c16045b-9709-5c99-b12f-824370c0cf5c",
@@ -1252,8 +1252,8 @@
    "reading": "おおきい",
    "meaning_ko": "크다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "大きいかばんを持ってきました。",
+   "example_ko": "큰 가방을 가져왔어요."
   },
   {
    "id": "fae0053a-a562-513a-a9e5-8430203782b3",
@@ -1261,8 +1261,8 @@
    "reading": "おんなのこ",
    "meaning_ko": "여자아이",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "女の子が花に水をあげています。",
+   "example_ko": "여자아이가 꽃에 물을 주고 있어요."
   },
   {
    "id": "feb64577-7c02-54c6-928d-0986ee8b92db",
@@ -1270,8 +1270,8 @@
    "reading": "やま",
    "meaning_ko": "산",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "晴れた日に山に登ります。",
+   "example_ko": "맑은 날에 산에 올라요."
   },
   {
    "id": "a4b9d693-0260-5a59-b1b1-ab05be19b958",
@@ -1279,8 +1279,8 @@
    "reading": "かわ",
    "meaning_ko": "강",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "家の近くに川があります。",
+   "example_ko": "집 근처에 강이 있어요."
   },
   {
    "id": "eff88bf3-0132-5848-baa4-5e201878c967",
@@ -1288,8 +1288,8 @@
    "reading": "どようび",
    "meaning_ko": "토요일",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "土曜日に映画を見ます。",
+   "example_ko": "토요일에 영화를 봐요."
   },
   {
    "id": "1b3d4392-de84-5da7-9486-769a4f644766",
@@ -1297,8 +1297,8 @@
    "reading": "せん",
    "meaning_ko": "천",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "この本は千円です。",
+   "example_ko": "이 책은 천 엔이에요."
   },
   {
    "id": "74a405f3-e4eb-5b50-9c34-3b71434df1d2",
@@ -1306,8 +1306,8 @@
    "reading": "こども",
    "meaning_ko": "아이",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "子どもが公園で遊んでいます。",
+   "example_ko": "아이가 공원에서 놀고 있어요."
   },
   {
    "id": "c96533f3-e4a4-507a-892e-3ab7db23d348",
@@ -1315,8 +1315,8 @@
    "reading": "ちいさい",
    "meaning_ko": "작다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "小さい声で話してください。",
+   "example_ko": "작은 목소리로 말해 주세요."
   },
   {
    "id": "a3cc4896-4f97-5b36-8b19-f023d1254e5a",
@@ -1324,8 +1324,8 @@
    "reading": "なか",
    "meaning_ko": "안쪽",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "かばんの中に鍵があります。",
+   "example_ko": "가방 안에 열쇠가 있어요."
   },
   {
    "id": "582186b1-1b20-56b8-b202-a4d4d36e7749",
@@ -1333,8 +1333,8 @@
    "reading": "いつつ",
    "meaning_ko": "다섯",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "机の上に箱が五つあります。",
+   "example_ko": "책상 위에 상자가 다섯 개 있어요."
   },
   {
    "id": "54d31f89-515e-5d8e-92d1-8e6875e6f3ab",
@@ -1342,8 +1342,8 @@
    "reading": "むっつ",
    "meaning_ko": "여섯",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "パンを六つ買いました。",
+   "example_ko": "빵을 여섯 개 샀어요."
   },
   {
    "id": "600648ac-324b-5539-8745-de02aa61a29c",
@@ -1351,8 +1351,8 @@
    "reading": "えん",
    "meaning_ko": "엔",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "切手は一枚百円です。",
+   "example_ko": "우표는 한 장에 백 엔이에요."
   },
   {
    "id": "16b692f2-e9bf-540a-85e4-70805980798f",
@@ -1360,8 +1360,8 @@
    "reading": "てんき",
    "meaning_ko": "날씨",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "今日は天気がいいです。",
+   "example_ko": "오늘은 날씨가 좋아요."
   },
   {
    "id": "4e34e0af-2306-5d07-8ade-145a1fad3384",
@@ -1369,8 +1369,8 @@
    "reading": "にちようび",
    "meaning_ko": "일요일",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "日曜日は家で休みます。",
+   "example_ko": "일요일에는 집에서 쉬어요."
   },
   {
    "id": "1223fb98-869f-5c6e-91cf-658ef5d26359",
@@ -1378,8 +1378,8 @@
    "reading": "げつようび",
    "meaning_ko": "월요일",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "月曜日から学校が始まります。",
+   "example_ko": "월요일부터 학교가 시작돼요."
   },
   {
    "id": "65d2d8a1-b7f0-5b74-9f8b-dd5dac3007dc",
@@ -1387,8 +1387,8 @@
    "reading": "き",
    "meaning_ko": "나무",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "庭に大きな木があります。",
+   "example_ko": "뜰에 큰 나무가 있어요."
   },
   {
    "id": "36f4da57-57cd-58ba-95f7-2c0445801f98",
@@ -1396,8 +1396,8 @@
    "reading": "みず",
    "meaning_ko": "물",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "水を一杯ください。",
+   "example_ko": "물 한 잔 주세요."
   },
   {
    "id": "c5bd7e43-fd17-5e03-b76d-16aab7c8fcc8",
@@ -1405,8 +1405,8 @@
    "reading": "かようび",
    "meaning_ko": "화요일",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "火曜日に病院へ行きます。",
+   "example_ko": "화요일에 병원에 가요."
   },
   {
    "id": "a50132f0-4d0c-5343-b5a8-b3fa08105ad5",
@@ -1414,8 +1414,8 @@
    "reading": "でる",
    "meaning_ko": "나가다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "毎朝七時に家を出る。",
+   "example_ko": "매일 아침 일곱 시에 집을 나선다."
   },
   {
    "id": "6c410815-265f-5692-87a8-5f809ca435db",
@@ -1423,8 +1423,8 @@
    "reading": "みぎ",
    "meaning_ko": "오른쪽",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "次の角を右に曲がってください。",
+   "example_ko": "다음 모퉁이에서 오른쪽으로 돌아 주세요."
   },
   {
    "id": "2888f01c-266f-54b5-a282-40839dcdccc2",
@@ -1432,8 +1432,8 @@
    "reading": "よっつ",
    "meaning_ko": "넷",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "コップを四つ並べます。",
+   "example_ko": "컵 네 개를 나란히 놓아요."
   },
   {
    "id": "0d140e8d-f434-574b-abb1-b2e0a735d785",
@@ -1441,8 +1441,8 @@
    "reading": "ひだり",
    "meaning_ko": "왼쪽",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "銀行は駅の左にあります。",
+   "example_ko": "은행은 역 왼쪽에 있어요."
   },
   {
    "id": "e6229978-7b50-5d88-9d3f-29a490981602",
@@ -1450,8 +1450,8 @@
    "reading": "ほん",
    "meaning_ko": "책",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "図書館で本を借りました。",
+   "example_ko": "도서관에서 책을 빌렸어요."
   },
   {
    "id": "0a55b633-25cb-585a-8975-adfa0a137afe",
@@ -1459,8 +1459,8 @@
    "reading": "しろい",
    "meaning_ko": "하얗다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "白いシャツを着ています。",
+   "example_ko": "흰 셔츠를 입고 있어요."
   },
   {
    "id": "16aff713-f1fc-52f7-a7c7-43b8b396b219",
@@ -1468,8 +1468,8 @@
    "reading": "いちまん",
    "meaning_ko": "만",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "旅行のために一万円貯めました。",
+   "example_ko": "여행을 위해 만 엔을 모았어요."
   },
   {
    "id": "2effd5ec-b7ca-595f-bb23-f1d6f681db6b",
@@ -1477,8 +1477,8 @@
    "reading": "いま",
    "meaning_ko": "지금",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "今、何時ですか。",
+   "example_ko": "지금 몇 시예요?"
   },
   {
    "id": "1f1a43fd-e74b-5c12-bb5a-6bcd724e5a08",
@@ -1486,8 +1486,8 @@
    "reading": "ごぜん",
    "meaning_ko": "오전",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "午前九時に店が開きます。",
+   "example_ko": "오전 아홉 시에 가게 문을 열어요."
   },
   {
    "id": "c106ac58-9f8f-500a-9dd6-2c0dcbd505b8",
@@ -1495,8 +1495,8 @@
    "reading": "ともだち",
    "meaning_ko": "친구",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "駅で友だちと会いました。",
+   "example_ko": "역에서 친구를 만났어요."
   },
   {
    "id": "13250a72-2be1-58f9-ae91-58658dfada6b",
@@ -1504,8 +1504,8 @@
    "reading": "ちち",
    "meaning_ko": "아버지",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "父は毎朝コーヒーを飲みます。",
+   "example_ko": "아버지는 매일 아침 커피를 드세요."
   },
   {
    "id": "b0843e79-8dd8-5d95-aa1f-d40af70b1a71",
@@ -1513,8 +1513,8 @@
    "reading": "きた",
    "meaning_ko": "북쪽",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "駅の北に学校があります。",
+   "example_ko": "역 북쪽에 학교가 있어요."
   },
   {
    "id": "eb3fb55f-ba1a-512a-b73c-1ceec691c217",
@@ -1522,8 +1522,8 @@
    "reading": "はんぶん",
    "meaning_ko": "절반",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "パンを半分に切ります。",
+   "example_ko": "빵을 반으로 잘라요."
   },
   {
    "id": "4636b9a3-7f7e-5a05-a25b-aa674feb1bd5",
@@ -1531,8 +1531,8 @@
    "reading": "そと",
    "meaning_ko": "바깥",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "外で少し待ってください。",
+   "example_ko": "밖에서 잠시 기다려 주세요."
   },
   {
    "id": "79d757b2-1d98-50aa-8343-4715b5f8e28e",
@@ -1540,8 +1540,8 @@
    "reading": "はは",
    "meaning_ko": "어머니",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "母と一緒に買い物に行きます。",
+   "example_ko": "어머니와 함께 장을 보러 가요."
   },
   {
    "id": "02977293-15a8-51b3-b2e5-bdfd656242ec",
@@ -1549,8 +1549,8 @@
    "reading": "やすむ",
    "meaning_ko": "쉬다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "疲れたら少し休むといいですよ。",
+   "example_ko": "피곤하면 조금 쉬는 게 좋아요."
   },
   {
    "id": "104449e8-0958-5566-a9e0-33c7b23c9bce",
@@ -1558,8 +1558,8 @@
    "reading": "せんせい",
    "meaning_ko": "선생님",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "先生に質問しました。",
+   "example_ko": "선생님께 질문했어요."
   },
   {
    "id": "65dc1999-78ee-5483-967b-c73c64fd7b82",
@@ -1567,8 +1567,8 @@
    "reading": "なまえ",
    "meaning_ko": "이름",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "ここに名前を書いてください。",
+   "example_ko": "여기에 이름을 써 주세요."
   },
   {
    "id": "746d1566-f852-52d3-8777-d98c41019174",
@@ -1576,8 +1576,8 @@
    "reading": "いちねん",
    "meaning_ko": "일 년",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "日本に来て一年になります。",
+   "example_ko": "일본에 온 지 일 년이 돼요."
   },
   {
    "id": "1a1d228c-424b-57c6-bf27-2a9d23b95b54",
@@ -1585,8 +1585,8 @@
    "reading": "げんき",
    "meaning_ko": "건강함",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "お元気ですか。",
+   "example_ko": "잘 지내세요?"
   },
   {
    "id": "d8f9497d-008e-5733-8bd1-fc30f38036e0",
@@ -1594,8 +1594,8 @@
    "reading": "ひゃく",
    "meaning_ko": "백",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "このペンは百円です。",
+   "example_ko": "이 펜은 백 엔이에요."
   },
   {
    "id": "d44129be-9ab6-575f-9835-ea2b97ef92b2",
@@ -1603,8 +1603,8 @@
    "reading": "おとこのこ",
    "meaning_ko": "남자아이",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "男の子がボールを追いかけています。",
+   "example_ko": "남자아이가 공을 쫓아가고 있어요."
   },
   {
    "id": "11e87898-7c72-54d0-a13e-af05e2c3e08b",
@@ -1612,8 +1612,8 @@
    "reading": "みる",
    "meaning_ko": "보다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "寝る前に写真を見るのが好きです。",
+   "example_ko": "자기 전에 사진 보는 것을 좋아해요."
   },
   {
    "id": "212cf92e-14b4-5798-a881-d417c3a586ea",
@@ -1621,8 +1621,8 @@
    "reading": "くるま",
    "meaning_ko": "자동차",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "雨の日は車で駅まで行きます。",
+   "example_ko": "비 오는 날에는 차로 역까지 가요."
   },
   {
    "id": "91b8ce63-adcc-590c-8ad9-34e42892a2ce",
@@ -1630,8 +1630,8 @@
    "reading": "まいにち",
    "meaning_ko": "매일",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "毎日、漢字を一つ覚えます。",
+   "example_ko": "매일 한자를 하나씩 외워요."
   },
   {
    "id": "be23cee0-ce27-542b-bcda-b2a612da9dc2",
@@ -1639,8 +1639,8 @@
    "reading": "いく",
    "meaning_ko": "가다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "明日は歩いて学校へ行く予定です。",
+   "example_ko": "내일은 걸어서 학교에 갈 예정이에요."
   },
   {
    "id": "c65f64c5-86f7-5e79-ab4a-6506f901479d",
@@ -1648,8 +1648,8 @@
    "reading": "にし",
    "meaning_ko": "서쪽",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "日は西に沈みます。",
+   "example_ko": "해는 서쪽으로 져요."
   },
   {
    "id": "f8d70f94-a1b7-54dc-bece-0e9583760c71",
@@ -1657,8 +1657,8 @@
    "reading": "なに",
    "meaning_ko": "무엇",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "これは何でできていますか。",
+   "example_ko": "이것은 무엇으로 만들어졌나요?"
   },
   {
    "id": "5eb3fcca-17be-5c76-99de-362473fcee7c",
@@ -1666,8 +1666,8 @@
    "reading": "くる",
    "meaning_ko": "오다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "明日、友だちが家に来る予定です。",
+   "example_ko": "내일 친구가 집에 올 예정이에요."
   },
   {
    "id": "7140422a-39b8-5364-b061-1386aa261f77",
@@ -1675,8 +1675,8 @@
    "reading": "がくせい",
    "meaning_ko": "학생",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "私は大学の学生です。",
+   "example_ko": "저는 대학생이에요."
   },
   {
    "id": "06f35d37-24c5-5974-9813-7dd7073a715b",
@@ -1684,8 +1684,8 @@
    "reading": "おかね",
    "meaning_ko": "돈",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "旅行のためにお金を貯めています。",
+   "example_ko": "여행을 위해 돈을 모으고 있어요."
   },
   {
    "id": "68a01317-0ddf-51a2-b471-2bee8d320045",
@@ -1693,8 +1693,8 @@
    "reading": "あめ",
    "meaning_ko": "비",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "朝から雨が降っています。",
+   "example_ko": "아침부터 비가 내리고 있어요."
   },
   {
    "id": "a3ae5176-3eff-5e70-be74-d914fc9f47d4",
@@ -1702,8 +1702,8 @@
    "reading": "くに",
    "meaning_ko": "나라",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "いつかいろいろな国を旅したいです。",
+   "example_ko": "언젠가 여러 나라를 여행하고 싶어요."
   },
   {
    "id": "dfce78c1-72ca-5cd3-81bc-99ecd23aeb02",
@@ -1711,8 +1711,8 @@
    "reading": "ひがし",
    "meaning_ko": "동쪽",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "日は東から昇ります。",
+   "example_ko": "해는 동쪽에서 떠요."
   },
   {
    "id": "456961b4-40ca-507c-b4cd-f5fbf34ad806",
@@ -1720,8 +1720,8 @@
    "reading": "ながい",
    "meaning_ko": "길다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "駅の前に長い列ができています。",
+   "example_ko": "역 앞에 긴 줄이 생겼어요."
   },
   {
    "id": "f027c283-b26b-56df-ae58-28ae6fc38198",
@@ -1729,8 +1729,8 @@
    "reading": "まえ",
    "meaning_ko": "앞",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "店の前で会いましょう。",
+   "example_ko": "가게 앞에서 만나요."
   },
   {
    "id": "7a1fb512-3086-5cba-b30d-5cb6dbcfcb16",
@@ -1738,8 +1738,8 @@
    "reading": "みなみ",
    "meaning_ko": "남쪽",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "窓は南を向いています。",
+   "example_ko": "창문은 남쪽을 향하고 있어요."
   },
   {
    "id": "7f868bd0-f7e8-55b8-a802-3254c4d0d3a2",
@@ -1747,8 +1747,8 @@
    "reading": "うしろ",
    "meaning_ko": "뒤쪽",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "いすの後ろに荷物があります。",
+   "example_ko": "의자 뒤에 짐이 있어요."
   },
   {
    "id": "ccc916ac-58fd-5f93-a998-46c25323515d",
@@ -1756,8 +1756,8 @@
    "reading": "たべる",
    "meaning_ko": "먹다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "朝ご飯を食べる時間がありませんでした。",
+   "example_ko": "아침밥을 먹을 시간이 없었어요."
   },
   {
    "id": "e22ea5b4-6d5c-58c4-917d-aa19e59febb2",
@@ -1765,8 +1765,8 @@
    "reading": "がっこう",
    "meaning_ko": "학교",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "学校まで歩いて十分です。",
+   "example_ko": "학교까지 걸어서 십 분이에요."
   },
   {
    "id": "b381b1e5-7825-5e75-9906-5fcc17be1aef",
@@ -1774,8 +1774,8 @@
    "reading": "じかん",
    "meaning_ko": "시간",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "今日は本を読む時間があります。",
+   "example_ko": "오늘은 책을 읽을 시간이 있어요."
   },
   {
    "id": "f6e17f64-97be-5f9a-9385-4fea3a3882f8",
@@ -1783,8 +1783,8 @@
    "reading": "たかい",
    "meaning_ko": "높다·비싸다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "この店の果物は少し高いです。",
+   "example_ko": "이 가게의 과일은 조금 비싸요."
   },
   {
    "id": "c9608bac-aecb-5c17-aa49-8fbfbc7c86d0",
@@ -1792,8 +1792,8 @@
    "reading": "あいだ",
    "meaning_ko": "사이",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "机と壁の間にかばんがあります。",
+   "example_ko": "책상과 벽 사이에 가방이 있어요."
   },
   {
    "id": "c2fbc96e-ca1c-5995-a38f-654c1272e83c",
@@ -1801,8 +1801,8 @@
    "reading": "はなす",
    "meaning_ko": "이야기하다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "日本語で話す練習をしています。",
+   "example_ko": "일본어로 말하는 연습을 하고 있어요."
   },
   {
    "id": "9f4067c6-8e3a-57e5-b88b-c82e5d430b7d",
@@ -1810,8 +1810,8 @@
    "reading": "でんしゃ",
    "meaning_ko": "전철",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "電車で会社に通っています。",
+   "example_ko": "전철로 회사에 다니고 있어요."
   },
   {
    "id": "43f44bdc-4ba9-5195-8336-7c0e40828cce",
@@ -1819,8 +1819,8 @@
    "reading": "きく",
    "meaning_ko": "듣다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "寝る前に音楽を聞くのが好きです。",
+   "example_ko": "자기 전에 음악 듣는 것을 좋아해요."
   },
   {
    "id": "66f3f41a-1773-56b8-b1f4-82cef3cc988f",
@@ -1828,8 +1828,8 @@
    "reading": "にほんご",
    "meaning_ko": "일본어",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "毎朝、日本語のニュースを読みます。",
+   "example_ko": "매일 아침 일본어 뉴스를 읽어요."
   },
   {
    "id": "30d9105a-e277-5696-a852-1297738b22de",
@@ -1837,8 +1837,8 @@
    "reading": "よむ",
    "meaning_ko": "읽다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "電車の中で本を読むことが多いです。",
+   "example_ko": "전철 안에서 책을 읽을 때가 많아요."
   },
   {
    "id": "02335c38-4660-5f55-b671-31a8bfba8c80",
@@ -1846,8 +1846,44 @@
    "reading": "かく",
    "meaning_ko": "쓰다",
    "jlpt_level": 5,
-   "example_ja": null,
-   "example_ko": null
+   "example_ja": "手紙を書くために便箋を買いました。",
+   "example_ko": "편지를 쓰려고 편지지를 샀어요."
+  },
+  {
+   "id": "a4e65bcf-b188-5603-817c-a42aa3ac0340",
+   "word": "駅",
+   "reading": "えき",
+   "meaning_ko": "역",
+   "jlpt_level": 5,
+   "example_ja": "駅で切符を買いました。",
+   "example_ko": "역에서 표를 샀어요."
+  },
+  {
+   "id": "2c2f6c40-0559-5e66-a647-9c050f297447",
+   "word": "入口",
+   "reading": "いりぐち",
+   "meaning_ko": "입구",
+   "jlpt_level": 5,
+   "example_ja": "入口で靴を脱いでください。",
+   "example_ko": "입구에서 신발을 벗어 주세요."
+  },
+  {
+   "id": "224f822a-d2d0-5c2e-894d-7534d028c301",
+   "word": "借りる",
+   "reading": "かりる",
+   "meaning_ko": "빌리다",
+   "jlpt_level": 5,
+   "example_ja": "本を借りるときは、このカードを見せます。",
+   "example_ko": "책을 빌릴 때는 이 카드를 보여 줘요."
+  },
+  {
+   "id": "4b1cb082-80e8-538d-99e8-1bb70a3735ac",
+   "word": "貸す",
+   "reading": "かす",
+   "meaning_ko": "빌려주다",
+   "jlpt_level": 5,
+   "example_ja": "友だちに傘を貸すことにしました。",
+   "example_ko": "친구에게 우산을 빌려주기로 했어요."
   }
  ]
 }
