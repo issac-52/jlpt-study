@@ -7,6 +7,7 @@ import { getSupabase } from "@/lib/supabase";
 import { cardKey, getNextReview, isDue, makeCards } from "@/lib/study";
 import type { FriendRequest, FriendStat, KanjiRow, Level, Profile, ReviewRow, StudyCard, VocabularyKanjiRow, VocabularyRow } from "@/lib/types";
 import AuthScreen from "./auth-screen";
+import { includeN5 } from "@/lib/n5";
 import LearningView from "./learning-view";
 import ReviewView from "./review-view";
 import FriendsView from "./friends-view";
@@ -90,9 +91,10 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
       if (firstError) throw firstError;
       if (!p.data) throw new Error("프로필이 없어요. 데이터베이스 초기화 상태를 확인해 주세요.");
       setProfile(p.data as Profile);
-      setKanji((k.data ?? []) as KanjiRow[]);
-      setVocabulary((v.data ?? []) as VocabularyRow[]);
-      setLinks((link.data ?? []) as VocabularyKanjiRow[]);
+      const content = includeN5((k.data ?? []) as KanjiRow[], (v.data ?? []) as VocabularyRow[], (link.data ?? []) as VocabularyKanjiRow[]);
+      setKanji(content.kanji);
+      setVocabulary(content.vocabulary);
+      setLinks(content.links);
       setReviewRows((rev.data ?? []) as ReviewRow[]);
       setLogs((log.data ?? []) as ReviewLog[]);
       setRequests((req.data ?? []) as FriendRequest[]);
@@ -244,7 +246,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
             <button className="feature-card mint" type="button" onClick={()=>setTab("friends")}><span className="feature-glyph"><UsersRound size={33}/></span><strong>친구와 함께</strong><small>함께 만드는 학습 습관</small><ChevronRight size={17}/></button>
           </div>
           <div className="weekly-panel"><CalendarCheck2 size={18}/><span>최근 7일 동안 <strong>{lastWeekCount}번</strong> 복습했어요.</span></div>
-          <p className="helper-copy">급수별 단어·한자 목록은 초기 예시 데이터입니다. 공식 JLPT 목록이 아닙니다.</p>
+          <p className="helper-copy">JLPT 급수는 학습용 참고 분류입니다.</p>
         </section>}
         {tab==="learn" && <LearningView kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
         {tab==="review" && <ReviewView card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} revealed={revealed} saving={saving} finished={finished} onReveal={()=>setRevealed(true)} onScore={correct=>void score(correct)} onStart={startReview}/>}

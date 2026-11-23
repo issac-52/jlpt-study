@@ -1,0 +1,6 @@
+Kotoba kanji catalogue
+Source: David Gouveia, https://github.com/davidluzgouveia/kanji-data/tree/00fd7079c3890f430759536f91aa5e854ec0ca4f (MIT, see kanji-data-LICENSE.txt).
+English glosses and Japanese readings: KANJIDIC, copyright Electronic Dictionary Research and Development Group, https://www.edrdg.org/wiki/index.php/KANJIDIC_Project (CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/).
+The adapted kanji data is provided under CC BY-SA 4.0. Kotoba selected fields, updated educational kanji membership, and added Korean glosses.
+JLPT estimates: Jonathan Waller, https://www.tanos.co.uk/jlpt/. N5 vocabulary examples and Korean translations were selected for this app.
+Educational kanji membership: MEXT, elementary school curriculum, 学年別漢字配当表.

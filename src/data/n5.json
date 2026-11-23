@@ -1,0 +1,1853 @@
+{
+ "kanji": [
+  {
+   "id": "ee7f90f3-3e98-5f4e-8ab0-1bde885fb790",
+   "character": "一",
+   "meaning_ko": "하나",
+   "onyomi": [
+    "いち",
+    "いつ"
+   ],
+   "kunyomi": [
+    "ひと-",
+    "ひと.つ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "9d9ef0f4-6027-58c8-afde-ddb509c7b7c4",
+   "character": "二",
+   "meaning_ko": "둘",
+   "onyomi": [
+    "に",
+    "じ"
+   ],
+   "kunyomi": [
+    "ふた",
+    "ふた.つ",
+    "ふたたび"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "99ca802d-6fb6-5393-b597-eb52d4566683",
+   "character": "九",
+   "meaning_ko": "아홉",
+   "onyomi": [
+    "きゅう",
+    "く"
+   ],
+   "kunyomi": [
+    "ここの",
+    "ここの.つ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "7dcf263d-c564-5b21-9e0d-8a00a69f93a2",
+   "character": "七",
+   "meaning_ko": "일곱",
+   "onyomi": [
+    "しち"
+   ],
+   "kunyomi": [
+    "なな",
+    "なな.つ",
+    "なの"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "7cdd6621-0e4d-5f93-8ab0-552f89e9d508",
+   "character": "人",
+   "meaning_ko": "사람",
+   "onyomi": [
+    "じん",
+    "にん"
+   ],
+   "kunyomi": [
+    "ひと",
+    "-り",
+    "-と"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "69ac7caa-7059-5aeb-bd35-ee53d9eb974a",
+   "character": "入",
+   "meaning_ko": "들어가다",
+   "onyomi": [
+    "にゅう",
+    "じゅ"
+   ],
+   "kunyomi": [
+    "い.る",
+    "-い.る",
+    "-い.り",
+    "い.れる",
+    "-い.れ",
+    "はい.る"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "42992814-ed08-51b6-b807-dc6540eec6cb",
+   "character": "八",
+   "meaning_ko": "여덟",
+   "onyomi": [
+    "はち"
+   ],
+   "kunyomi": [
+    "や",
+    "や.つ",
+    "やっ.つ",
+    "よう"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "a64699b5-2ded-5ad5-b4cd-afcfd59eac2f",
+   "character": "十",
+   "meaning_ko": "열",
+   "onyomi": [
+    "じゅう",
+    "じっ",
+    "じゅっ"
+   ],
+   "kunyomi": [
+    "とお",
+    "と"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "f9377e4d-4af3-5e6a-9d92-058a0d8a6caa",
+   "character": "三",
+   "meaning_ko": "셋",
+   "onyomi": [
+    "さん",
+    "ぞう"
+   ],
+   "kunyomi": [
+    "み",
+    "み.つ",
+    "みっ.つ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "e152cc49-0b5f-53ce-b750-d0c18f0b4f85",
+   "character": "上",
+   "meaning_ko": "위",
+   "onyomi": [
+    "じょう",
+    "しょう",
+    "しゃん"
+   ],
+   "kunyomi": [
+    "うえ",
+    "-うえ",
+    "うわ-",
+    "かみ",
+    "あ.げる",
+    "-あ.げる",
+    "あ.がる",
+    "-あ.がる",
+    "あ.がり",
+    "-あ.がり",
+    "のぼ.る",
+    "のぼ.り",
+    "のぼ.せる",
+    "のぼ.す",
+    "たてまつ.る"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "f733922b-1b79-5566-8905-f7bf00257d25",
+   "character": "下",
+   "meaning_ko": "아래",
+   "onyomi": [
+    "か",
+    "げ"
+   ],
+   "kunyomi": [
+    "した",
+    "しも",
+    "もと",
+    "さ.げる",
+    "さ.がる",
+    "くだ.る",
+    "くだ.り",
+    "くだ.す",
+    "-くだ.す",
+    "くだ.さる",
+    "お.ろす",
+    "お.りる"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "a1c776f0-7889-525d-ac7a-bd53134cabc3",
+   "character": "大",
+   "meaning_ko": "크다",
+   "onyomi": [
+    "だい",
+    "たい"
+   ],
+   "kunyomi": [
+    "おお-",
+    "おお.きい",
+    "-おお.いに"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "74f5b452-5970-5ddf-b679-de7d684c9396",
+   "character": "女",
+   "meaning_ko": "여자",
+   "onyomi": [
+    "じょ",
+    "にょ",
+    "にょう"
+   ],
+   "kunyomi": [
+    "おんな",
+    "め"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "13267287-69d7-5d01-a27f-a0dd582930dc",
+   "character": "山",
+   "meaning_ko": "산",
+   "onyomi": [
+    "さん",
+    "せん"
+   ],
+   "kunyomi": [
+    "やま"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "51c4fdbb-36ea-5a04-a376-d2ec2f313cec",
+   "character": "川",
+   "meaning_ko": "강",
+   "onyomi": [
+    "せん"
+   ],
+   "kunyomi": [
+    "かわ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "9feb7049-5368-53fd-83fe-f98fcfc6241d",
+   "character": "土",
+   "meaning_ko": "흙",
+   "onyomi": [
+    "ど",
+    "と"
+   ],
+   "kunyomi": [
+    "つち"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "67cdf4cf-e3cc-557d-987a-b7dda53e2886",
+   "character": "千",
+   "meaning_ko": "천",
+   "onyomi": [
+    "せん"
+   ],
+   "kunyomi": [
+    "ち"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "6d6a7b15-77c2-5224-ae09-6dd2fdf21621",
+   "character": "子",
+   "meaning_ko": "아이",
+   "onyomi": [
+    "し",
+    "す",
+    "つ"
+   ],
+   "kunyomi": [
+    "こ",
+    "-こ",
+    "ね"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "1b5efe09-74ed-554e-b184-09384e443f87",
+   "character": "小",
+   "meaning_ko": "작다",
+   "onyomi": [
+    "しょう"
+   ],
+   "kunyomi": [
+    "ちい.さい",
+    "こ-",
+    "お-",
+    "さ-"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "23febd9c-c3f3-50a9-bdcb-10e86def554f",
+   "character": "中",
+   "meaning_ko": "안",
+   "onyomi": [
+    "ちゅう"
+   ],
+   "kunyomi": [
+    "なか",
+    "うち",
+    "あた.る"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "36ce5f19-e2e7-59ac-8509-fb43f4d94852",
+   "character": "五",
+   "meaning_ko": "다섯",
+   "onyomi": [
+    "ご"
+   ],
+   "kunyomi": [
+    "いつ",
+    "いつ.つ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "a89103c4-98c6-54f0-b201-50442a16e6dd",
+   "character": "六",
+   "meaning_ko": "여섯",
+   "onyomi": [
+    "ろく",
+    "りく"
+   ],
+   "kunyomi": [
+    "む",
+    "む.つ",
+    "むっ.つ",
+    "むい"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "18b371fb-f0e2-5765-ac56-caae8f90f47f",
+   "character": "円",
+   "meaning_ko": "엔",
+   "onyomi": [
+    "えん"
+   ],
+   "kunyomi": [
+    "まる.い",
+    "まる",
+    "まど",
+    "まど.か",
+    "まろ.やか"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "01d7c661-6d44-55cf-b37a-20b1412f6a20",
+   "character": "天",
+   "meaning_ko": "하늘",
+   "onyomi": [
+    "てん"
+   ],
+   "kunyomi": [
+    "あまつ",
+    "あめ",
+    "あま-"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "9738d5ba-c4b3-55ea-88c9-e634524748a4",
+   "character": "日",
+   "meaning_ko": "날",
+   "onyomi": [
+    "にち",
+    "じつ"
+   ],
+   "kunyomi": [
+    "ひ",
+    "-び",
+    "-か"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "cc407058-5c45-50da-b5e6-4d52ff5d9281",
+   "character": "月",
+   "meaning_ko": "달",
+   "onyomi": [
+    "げつ",
+    "がつ"
+   ],
+   "kunyomi": [
+    "つき"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "7fb5b8f3-7153-58ca-8934-72227ad50bce",
+   "character": "木",
+   "meaning_ko": "나무",
+   "onyomi": [
+    "ぼく",
+    "もく"
+   ],
+   "kunyomi": [
+    "き",
+    "こ-"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "328f0660-538b-5274-9e24-d7812f8d4383",
+   "character": "水",
+   "meaning_ko": "물",
+   "onyomi": [
+    "すい"
+   ],
+   "kunyomi": [
+    "みず",
+    "みず-"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "14df01e0-fa2c-55b5-a3e5-232badbb0de8",
+   "character": "火",
+   "meaning_ko": "불",
+   "onyomi": [
+    "か"
+   ],
+   "kunyomi": [
+    "ひ",
+    "-び",
+    "ほ-"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "931e12e3-857f-5fb7-8a8e-317423000ad3",
+   "character": "出",
+   "meaning_ko": "나가다",
+   "onyomi": [
+    "しゅつ",
+    "すい"
+   ],
+   "kunyomi": [
+    "で.る",
+    "-で",
+    "だ.す",
+    "-だ.す",
+    "い.でる",
+    "い.だす"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "f3d2b6ce-59ff-5cfd-9b45-1fa2ebaef9d1",
+   "character": "右",
+   "meaning_ko": "오른쪽",
+   "onyomi": [
+    "う",
+    "ゆう"
+   ],
+   "kunyomi": [
+    "みぎ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "1d836a79-e35e-5c8c-a1cb-09973ad4140b",
+   "character": "四",
+   "meaning_ko": "넷",
+   "onyomi": [
+    "し"
+   ],
+   "kunyomi": [
+    "よ",
+    "よ.つ",
+    "よっ.つ",
+    "よん"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "1daa25c0-d763-5147-a301-293cef6e3156",
+   "character": "左",
+   "meaning_ko": "왼쪽",
+   "onyomi": [
+    "さ",
+    "しゃ"
+   ],
+   "kunyomi": [
+    "ひだり"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "13c7f30b-901e-5765-b55c-8f0b22a08a8a",
+   "character": "本",
+   "meaning_ko": "책",
+   "onyomi": [
+    "ほん"
+   ],
+   "kunyomi": [
+    "もと"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "fa5ed99e-f5be-5d62-9280-46128b7b5ffe",
+   "character": "白",
+   "meaning_ko": "희다",
+   "onyomi": [
+    "はく",
+    "びゃく"
+   ],
+   "kunyomi": [
+    "しろ",
+    "しら-",
+    "しろ.い"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "b3f1a060-dd84-52ee-a041-4041b44d864c",
+   "character": "万",
+   "meaning_ko": "만",
+   "onyomi": [
+    "まん",
+    "ばん"
+   ],
+   "kunyomi": [
+    "よろず"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "1677f0a8-c0c5-582a-9139-b9b2fdcf8536",
+   "character": "今",
+   "meaning_ko": "지금",
+   "onyomi": [
+    "こん",
+    "きん"
+   ],
+   "kunyomi": [
+    "いま"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "adcad560-0cd5-51c4-aeec-3863444af342",
+   "character": "午",
+   "meaning_ko": "정오",
+   "onyomi": [
+    "ご"
+   ],
+   "kunyomi": [
+    "うま"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "0ea05fbd-ae7a-5c73-94d3-78cc829ea8ba",
+   "character": "友",
+   "meaning_ko": "친구",
+   "onyomi": [
+    "ゆう"
+   ],
+   "kunyomi": [
+    "とも"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "c5984976-2ecf-5ba8-9f41-3420ad8920a5",
+   "character": "父",
+   "meaning_ko": "아버지",
+   "onyomi": [
+    "ふ"
+   ],
+   "kunyomi": [
+    "ちち"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "53cf51ce-6d99-52d5-80ef-02b172c77a74",
+   "character": "北",
+   "meaning_ko": "북쪽",
+   "onyomi": [
+    "ほく"
+   ],
+   "kunyomi": [
+    "きた"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "bef8788f-78f3-5a67-a785-d1c660ecf8c3",
+   "character": "半",
+   "meaning_ko": "절반",
+   "onyomi": [
+    "はん"
+   ],
+   "kunyomi": [
+    "なか.ば"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "e8269bf5-b445-57d9-bc42-72859aac28c3",
+   "character": "外",
+   "meaning_ko": "바깥",
+   "onyomi": [
+    "がい",
+    "げ"
+   ],
+   "kunyomi": [
+    "そと",
+    "ほか",
+    "はず.す",
+    "はず.れる",
+    "と-"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "3cba5ccc-c48e-5523-8ce1-08910378ca80",
+   "character": "母",
+   "meaning_ko": "어머니",
+   "onyomi": [
+    "ぼ"
+   ],
+   "kunyomi": [
+    "はは",
+    "も"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "eda98aab-663c-5935-8916-fc88c745ff06",
+   "character": "休",
+   "meaning_ko": "쉬다",
+   "onyomi": [
+    "きゅう"
+   ],
+   "kunyomi": [
+    "やす.む",
+    "やす.まる",
+    "やす.める"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "bd527d47-e19d-5cce-897c-2d1b97073687",
+   "character": "先",
+   "meaning_ko": "앞",
+   "onyomi": [
+    "せん"
+   ],
+   "kunyomi": [
+    "さき",
+    "ま.ず"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "499ed3e5-db1e-5594-ba42-c05e127a5b44",
+   "character": "名",
+   "meaning_ko": "이름",
+   "onyomi": [
+    "めい",
+    "みょう"
+   ],
+   "kunyomi": [
+    "な",
+    "-な"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "9a2eb121-d2db-50f9-b966-3315c8dc6110",
+   "character": "年",
+   "meaning_ko": "해",
+   "onyomi": [
+    "ねん"
+   ],
+   "kunyomi": [
+    "とし"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "5af48e57-9fd3-5cdf-9834-52787988ac0d",
+   "character": "気",
+   "meaning_ko": "기운",
+   "onyomi": [
+    "き",
+    "け"
+   ],
+   "kunyomi": [
+    "いき"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "9adee3e9-d86b-53e4-9962-d7b2873ce408",
+   "character": "百",
+   "meaning_ko": "백",
+   "onyomi": [
+    "ひゃく",
+    "びゃく"
+   ],
+   "kunyomi": [
+    "もも"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "b9c5b685-b22b-5cf7-9e2a-ac82e5b0b526",
+   "character": "男",
+   "meaning_ko": "남자",
+   "onyomi": [
+    "だん",
+    "なん"
+   ],
+   "kunyomi": [
+    "おとこ",
+    "お"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "dc10ac1d-5997-5824-a945-6de2d7673aac",
+   "character": "見",
+   "meaning_ko": "보다",
+   "onyomi": [
+    "けん"
+   ],
+   "kunyomi": [
+    "み.る",
+    "み.える",
+    "み.せる"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "9bb4d536-53bb-55bb-a12f-da2a5e3306ad",
+   "character": "車",
+   "meaning_ko": "수레",
+   "onyomi": [
+    "しゃ"
+   ],
+   "kunyomi": [
+    "くるま"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "a119f22b-cb74-5a88-a2e4-f32c954e5c41",
+   "character": "毎",
+   "meaning_ko": "매번",
+   "onyomi": [
+    "まい"
+   ],
+   "kunyomi": [
+    "ごと",
+    "-ごと.に"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "08c6bd36-fc3b-5683-ad86-47fa725b7e92",
+   "character": "行",
+   "meaning_ko": "가다",
+   "onyomi": [
+    "こう",
+    "ぎょう",
+    "あん"
+   ],
+   "kunyomi": [
+    "い.く",
+    "ゆ.く",
+    "-ゆ.き",
+    "-ゆき",
+    "-い.き",
+    "-いき",
+    "おこな.う",
+    "おこ.なう"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "0e3ea087-e7c2-5fae-8b67-b0b37ae2c1d5",
+   "character": "西",
+   "meaning_ko": "서쪽",
+   "onyomi": [
+    "せい",
+    "さい",
+    "す"
+   ],
+   "kunyomi": [
+    "にし"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "6fbe4e1f-2e0d-5211-a3f3-143fc5f79cd9",
+   "character": "何",
+   "meaning_ko": "무엇",
+   "onyomi": [
+    "か"
+   ],
+   "kunyomi": [
+    "なに",
+    "なん",
+    "なに-",
+    "なん-"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "3112dc5a-95a5-51aa-8232-1abc131f9964",
+   "character": "来",
+   "meaning_ko": "오다",
+   "onyomi": [
+    "らい",
+    "たい"
+   ],
+   "kunyomi": [
+    "く.る",
+    "きた.る",
+    "きた.す",
+    "き.たす",
+    "き.たる",
+    "き",
+    "こ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "c1e89e9d-2ff5-5082-81fd-88af6225af62",
+   "character": "学",
+   "meaning_ko": "배우다",
+   "onyomi": [
+    "がく"
+   ],
+   "kunyomi": [
+    "まな.ぶ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "649dfc23-0dad-510d-b869-4f695002ee55",
+   "character": "金",
+   "meaning_ko": "쇠",
+   "onyomi": [
+    "きん",
+    "こん",
+    "ごん"
+   ],
+   "kunyomi": [
+    "かね",
+    "かな-",
+    "-がね"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "31c9d65d-1718-5ed1-acd9-31a83f262ea7",
+   "character": "雨",
+   "meaning_ko": "비",
+   "onyomi": [
+    "う"
+   ],
+   "kunyomi": [
+    "あめ",
+    "あま-",
+    "-さめ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "a4a00966-5607-5ab9-838e-bb80a6ac9708",
+   "character": "国",
+   "meaning_ko": "나라",
+   "onyomi": [
+    "こく"
+   ],
+   "kunyomi": [
+    "くに"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "dcf66359-a296-52b4-9c70-9ad87fa6d552",
+   "character": "東",
+   "meaning_ko": "동쪽",
+   "onyomi": [
+    "とう"
+   ],
+   "kunyomi": [
+    "ひがし"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "cb3ab85f-d333-5d5f-9ff8-4b52bc7613f3",
+   "character": "長",
+   "meaning_ko": "길다",
+   "onyomi": [
+    "ちょう"
+   ],
+   "kunyomi": [
+    "なが.い",
+    "おさ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "068282a3-e81c-50a5-b0e5-234e87cf9aff",
+   "character": "前",
+   "meaning_ko": "앞",
+   "onyomi": [
+    "ぜん"
+   ],
+   "kunyomi": [
+    "まえ",
+    "-まえ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "7c15e5d4-926e-57fb-878f-77de70d5e66d",
+   "character": "南",
+   "meaning_ko": "남쪽",
+   "onyomi": [
+    "なん",
+    "な"
+   ],
+   "kunyomi": [
+    "みなみ"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "32763b6c-9c8b-5d1f-b8b9-c8c0c70af107",
+   "character": "後",
+   "meaning_ko": "뒤",
+   "onyomi": [
+    "ご",
+    "こう"
+   ],
+   "kunyomi": [
+    "のち",
+    "うし.ろ",
+    "うしろ",
+    "あと",
+    "おく.れる"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "de7fa1b9-892c-54a9-8236-04bbc282ca11",
+   "character": "食",
+   "meaning_ko": "먹다",
+   "onyomi": [
+    "しょく",
+    "じき"
+   ],
+   "kunyomi": [
+    "く.う",
+    "く.らう",
+    "た.べる",
+    "は.む"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "3c4e35ac-bb9a-5e14-975c-ebff4ce55a10",
+   "character": "校",
+   "meaning_ko": "학교",
+   "onyomi": [
+    "こう",
+    "きょう"
+   ],
+   "kunyomi": [],
+   "jlpt_level": 5
+  },
+  {
+   "id": "c3b278b8-8609-5fd6-a3c1-ae0d956ea0bb",
+   "character": "時",
+   "meaning_ko": "때",
+   "onyomi": [
+    "じ"
+   ],
+   "kunyomi": [
+    "とき",
+    "-どき"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "5a3d3d90-6d35-5b58-99e9-2faef2ec4b37",
+   "character": "高",
+   "meaning_ko": "높다",
+   "onyomi": [
+    "こう"
+   ],
+   "kunyomi": [
+    "たか.い",
+    "たか",
+    "-だか",
+    "たか.まる",
+    "たか.める"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "e7512047-cd98-50e6-863e-a2789642dd31",
+   "character": "間",
+   "meaning_ko": "사이",
+   "onyomi": [
+    "かん",
+    "けん"
+   ],
+   "kunyomi": [
+    "あいだ",
+    "ま",
+    "あい"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "261707d9-9265-5e1f-825a-2d7200ccf07b",
+   "character": "話",
+   "meaning_ko": "이야기",
+   "onyomi": [
+    "わ"
+   ],
+   "kunyomi": [
+    "はな.す",
+    "はなし"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "3c0c7025-d741-5ff3-ab6b-8d1a653ed238",
+   "character": "電",
+   "meaning_ko": "전기",
+   "onyomi": [
+    "でん"
+   ],
+   "kunyomi": [],
+   "jlpt_level": 5
+  },
+  {
+   "id": "307f3697-d064-58c9-9bed-05e9388f3c75",
+   "character": "聞",
+   "meaning_ko": "듣다",
+   "onyomi": [
+    "ぶん",
+    "もん"
+   ],
+   "kunyomi": [
+    "き.く",
+    "き.こえる"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "df5b4401-2e1b-5b47-b860-ee65570be1f2",
+   "character": "語",
+   "meaning_ko": "말",
+   "onyomi": [
+    "ご"
+   ],
+   "kunyomi": [
+    "かた.る",
+    "かた.らう"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "f6ac829a-8459-576a-bac4-3034a13bb726",
+   "character": "読",
+   "meaning_ko": "읽다",
+   "onyomi": [
+    "どく",
+    "とく",
+    "とう"
+   ],
+   "kunyomi": [
+    "よ.む",
+    "-よ.み"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "9404e3c8-29df-55a5-882d-ca5d468732a2",
+   "character": "生",
+   "meaning_ko": "살다",
+   "onyomi": [
+    "せい",
+    "しょう"
+   ],
+   "kunyomi": [
+    "い.きる",
+    "い.かす",
+    "い.ける",
+    "う.まれる",
+    "うま.れる",
+    "う.まれ",
+    "うまれ",
+    "う.む",
+    "お.う",
+    "は.える",
+    "は.やす",
+    "き",
+    "なま",
+    "なま-",
+    "な.る",
+    "な.す",
+    "む.す",
+    "-う"
+   ],
+   "jlpt_level": 5
+  },
+  {
+   "id": "b744f0cf-291d-5d3f-a8d7-fe19cc6bafd8",
+   "character": "書",
+   "meaning_ko": "쓰다",
+   "onyomi": [
+    "しょ"
+   ],
+   "kunyomi": [
+    "か.く",
+    "-が.き",
+    "-がき"
+   ],
+   "jlpt_level": 5
+  }
+ ],
+ "vocabulary": [
+  {
+   "id": "7dcf7026-48b9-5e33-91fc-196ba01d1100",
+   "word": "一つ",
+   "reading": "ひとつ",
+   "meaning_ko": "하나",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "5ccdadb2-b98b-52b7-8e34-c5864976e76a",
+   "word": "二つ",
+   "reading": "ふたつ",
+   "meaning_ko": "둘",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "b31e877f-9270-5b37-8d74-1c9c5d4900d5",
+   "word": "九つ",
+   "reading": "ここのつ",
+   "meaning_ko": "아홉",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "e190e1c5-6e1f-50f7-8d09-c29f6a9a89d5",
+   "word": "七つ",
+   "reading": "ななつ",
+   "meaning_ko": "일곱",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "b561a092-8a84-5469-9220-9cb55fb2779e",
+   "word": "人",
+   "reading": "ひと",
+   "meaning_ko": "사람",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "2ed29a4f-bdfa-553f-848f-7e4a41f5a887",
+   "word": "入る",
+   "reading": "はいる",
+   "meaning_ko": "들어가다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "d2832b9e-8689-5758-bf40-630d3fbee945",
+   "word": "八つ",
+   "reading": "やっつ",
+   "meaning_ko": "여덟",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "187251bd-923b-53f6-a71a-2224194903bf",
+   "word": "十",
+   "reading": "とお",
+   "meaning_ko": "열",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "bd6017da-4b59-51ef-bb1a-e6d0f90e769f",
+   "word": "三つ",
+   "reading": "みっつ",
+   "meaning_ko": "셋",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "0117bf7a-ab9d-50d4-83a5-2447987d94b1",
+   "word": "上",
+   "reading": "うえ",
+   "meaning_ko": "위",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "24ab21ac-8d82-5cc7-add1-4f7e2fca5937",
+   "word": "下",
+   "reading": "した",
+   "meaning_ko": "아래",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "6c16045b-9709-5c99-b12f-824370c0cf5c",
+   "word": "大きい",
+   "reading": "おおきい",
+   "meaning_ko": "크다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "fae0053a-a562-513a-a9e5-8430203782b3",
+   "word": "女の子",
+   "reading": "おんなのこ",
+   "meaning_ko": "여자아이",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "feb64577-7c02-54c6-928d-0986ee8b92db",
+   "word": "山",
+   "reading": "やま",
+   "meaning_ko": "산",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "a4b9d693-0260-5a59-b1b1-ab05be19b958",
+   "word": "川",
+   "reading": "かわ",
+   "meaning_ko": "강",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "eff88bf3-0132-5848-baa4-5e201878c967",
+   "word": "土曜日",
+   "reading": "どようび",
+   "meaning_ko": "토요일",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "1b3d4392-de84-5da7-9486-769a4f644766",
+   "word": "千",
+   "reading": "せん",
+   "meaning_ko": "천",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "74a405f3-e4eb-5b50-9c34-3b71434df1d2",
+   "word": "子ども",
+   "reading": "こども",
+   "meaning_ko": "아이",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "c96533f3-e4a4-507a-892e-3ab7db23d348",
+   "word": "小さい",
+   "reading": "ちいさい",
+   "meaning_ko": "작다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "a3cc4896-4f97-5b36-8b19-f023d1254e5a",
+   "word": "中",
+   "reading": "なか",
+   "meaning_ko": "안쪽",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "582186b1-1b20-56b8-b202-a4d4d36e7749",
+   "word": "五つ",
+   "reading": "いつつ",
+   "meaning_ko": "다섯",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "54d31f89-515e-5d8e-92d1-8e6875e6f3ab",
+   "word": "六つ",
+   "reading": "むっつ",
+   "meaning_ko": "여섯",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "600648ac-324b-5539-8745-de02aa61a29c",
+   "word": "円",
+   "reading": "えん",
+   "meaning_ko": "엔",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "16b692f2-e9bf-540a-85e4-70805980798f",
+   "word": "天気",
+   "reading": "てんき",
+   "meaning_ko": "날씨",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "4e34e0af-2306-5d07-8ade-145a1fad3384",
+   "word": "日曜日",
+   "reading": "にちようび",
+   "meaning_ko": "일요일",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "1223fb98-869f-5c6e-91cf-658ef5d26359",
+   "word": "月曜日",
+   "reading": "げつようび",
+   "meaning_ko": "월요일",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "65d2d8a1-b7f0-5b74-9f8b-dd5dac3007dc",
+   "word": "木",
+   "reading": "き",
+   "meaning_ko": "나무",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "36f4da57-57cd-58ba-95f7-2c0445801f98",
+   "word": "水",
+   "reading": "みず",
+   "meaning_ko": "물",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "c5bd7e43-fd17-5e03-b76d-16aab7c8fcc8",
+   "word": "火曜日",
+   "reading": "かようび",
+   "meaning_ko": "화요일",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "a50132f0-4d0c-5343-b5a8-b3fa08105ad5",
+   "word": "出る",
+   "reading": "でる",
+   "meaning_ko": "나가다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "6c410815-265f-5692-87a8-5f809ca435db",
+   "word": "右",
+   "reading": "みぎ",
+   "meaning_ko": "오른쪽",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "2888f01c-266f-54b5-a282-40839dcdccc2",
+   "word": "四つ",
+   "reading": "よっつ",
+   "meaning_ko": "넷",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "0d140e8d-f434-574b-abb1-b2e0a735d785",
+   "word": "左",
+   "reading": "ひだり",
+   "meaning_ko": "왼쪽",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "e6229978-7b50-5d88-9d3f-29a490981602",
+   "word": "本",
+   "reading": "ほん",
+   "meaning_ko": "책",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "0a55b633-25cb-585a-8975-adfa0a137afe",
+   "word": "白い",
+   "reading": "しろい",
+   "meaning_ko": "하얗다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "16aff713-f1fc-52f7-a7c7-43b8b396b219",
+   "word": "一万",
+   "reading": "いちまん",
+   "meaning_ko": "만",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "2effd5ec-b7ca-595f-bb23-f1d6f681db6b",
+   "word": "今",
+   "reading": "いま",
+   "meaning_ko": "지금",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "1f1a43fd-e74b-5c12-bb5a-6bcd724e5a08",
+   "word": "午前",
+   "reading": "ごぜん",
+   "meaning_ko": "오전",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "c106ac58-9f8f-500a-9dd6-2c0dcbd505b8",
+   "word": "友だち",
+   "reading": "ともだち",
+   "meaning_ko": "친구",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "13250a72-2be1-58f9-ae91-58658dfada6b",
+   "word": "父",
+   "reading": "ちち",
+   "meaning_ko": "아버지",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "b0843e79-8dd8-5d95-aa1f-d40af70b1a71",
+   "word": "北",
+   "reading": "きた",
+   "meaning_ko": "북쪽",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "eb3fb55f-ba1a-512a-b73c-1ceec691c217",
+   "word": "半分",
+   "reading": "はんぶん",
+   "meaning_ko": "절반",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "4636b9a3-7f7e-5a05-a25b-aa674feb1bd5",
+   "word": "外",
+   "reading": "そと",
+   "meaning_ko": "바깥",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "79d757b2-1d98-50aa-8343-4715b5f8e28e",
+   "word": "母",
+   "reading": "はは",
+   "meaning_ko": "어머니",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "02977293-15a8-51b3-b2e5-bdfd656242ec",
+   "word": "休む",
+   "reading": "やすむ",
+   "meaning_ko": "쉬다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "104449e8-0958-5566-a9e0-33c7b23c9bce",
+   "word": "先生",
+   "reading": "せんせい",
+   "meaning_ko": "선생님",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "65dc1999-78ee-5483-967b-c73c64fd7b82",
+   "word": "名前",
+   "reading": "なまえ",
+   "meaning_ko": "이름",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "746d1566-f852-52d3-8777-d98c41019174",
+   "word": "一年",
+   "reading": "いちねん",
+   "meaning_ko": "일 년",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "1a1d228c-424b-57c6-bf27-2a9d23b95b54",
+   "word": "元気",
+   "reading": "げんき",
+   "meaning_ko": "건강함",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "d8f9497d-008e-5733-8bd1-fc30f38036e0",
+   "word": "百",
+   "reading": "ひゃく",
+   "meaning_ko": "백",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "d44129be-9ab6-575f-9835-ea2b97ef92b2",
+   "word": "男の子",
+   "reading": "おとこのこ",
+   "meaning_ko": "남자아이",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "11e87898-7c72-54d0-a13e-af05e2c3e08b",
+   "word": "見る",
+   "reading": "みる",
+   "meaning_ko": "보다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "212cf92e-14b4-5798-a881-d417c3a586ea",
+   "word": "車",
+   "reading": "くるま",
+   "meaning_ko": "자동차",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "91b8ce63-adcc-590c-8ad9-34e42892a2ce",
+   "word": "毎日",
+   "reading": "まいにち",
+   "meaning_ko": "매일",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "be23cee0-ce27-542b-bcda-b2a612da9dc2",
+   "word": "行く",
+   "reading": "いく",
+   "meaning_ko": "가다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "c65f64c5-86f7-5e79-ab4a-6506f901479d",
+   "word": "西",
+   "reading": "にし",
+   "meaning_ko": "서쪽",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "f8d70f94-a1b7-54dc-bece-0e9583760c71",
+   "word": "何",
+   "reading": "なに",
+   "meaning_ko": "무엇",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "5eb3fcca-17be-5c76-99de-362473fcee7c",
+   "word": "来る",
+   "reading": "くる",
+   "meaning_ko": "오다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "7140422a-39b8-5364-b061-1386aa261f77",
+   "word": "学生",
+   "reading": "がくせい",
+   "meaning_ko": "학생",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "06f35d37-24c5-5974-9813-7dd7073a715b",
+   "word": "お金",
+   "reading": "おかね",
+   "meaning_ko": "돈",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "68a01317-0ddf-51a2-b471-2bee8d320045",
+   "word": "雨",
+   "reading": "あめ",
+   "meaning_ko": "비",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "a3ae5176-3eff-5e70-be74-d914fc9f47d4",
+   "word": "国",
+   "reading": "くに",
+   "meaning_ko": "나라",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "dfce78c1-72ca-5cd3-81bc-99ecd23aeb02",
+   "word": "東",
+   "reading": "ひがし",
+   "meaning_ko": "동쪽",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "456961b4-40ca-507c-b4cd-f5fbf34ad806",
+   "word": "長い",
+   "reading": "ながい",
+   "meaning_ko": "길다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "f027c283-b26b-56df-ae58-28ae6fc38198",
+   "word": "前",
+   "reading": "まえ",
+   "meaning_ko": "앞",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "7a1fb512-3086-5cba-b30d-5cb6dbcfcb16",
+   "word": "南",
+   "reading": "みなみ",
+   "meaning_ko": "남쪽",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "7f868bd0-f7e8-55b8-a802-3254c4d0d3a2",
+   "word": "後ろ",
+   "reading": "うしろ",
+   "meaning_ko": "뒤쪽",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "ccc916ac-58fd-5f93-a998-46c25323515d",
+   "word": "食べる",
+   "reading": "たべる",
+   "meaning_ko": "먹다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "e22ea5b4-6d5c-58c4-917d-aa19e59febb2",
+   "word": "学校",
+   "reading": "がっこう",
+   "meaning_ko": "학교",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "b381b1e5-7825-5e75-9906-5fcc17be1aef",
+   "word": "時間",
+   "reading": "じかん",
+   "meaning_ko": "시간",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "f6e17f64-97be-5f9a-9385-4fea3a3882f8",
+   "word": "高い",
+   "reading": "たかい",
+   "meaning_ko": "높다·비싸다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "c9608bac-aecb-5c17-aa49-8fbfbc7c86d0",
+   "word": "間",
+   "reading": "あいだ",
+   "meaning_ko": "사이",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "c2fbc96e-ca1c-5995-a38f-654c1272e83c",
+   "word": "話す",
+   "reading": "はなす",
+   "meaning_ko": "이야기하다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "9f4067c6-8e3a-57e5-b88b-c82e5d430b7d",
+   "word": "電車",
+   "reading": "でんしゃ",
+   "meaning_ko": "전철",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "43f44bdc-4ba9-5195-8336-7c0e40828cce",
+   "word": "聞く",
+   "reading": "きく",
+   "meaning_ko": "듣다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "66f3f41a-1773-56b8-b1f4-82cef3cc988f",
+   "word": "日本語",
+   "reading": "にほんご",
+   "meaning_ko": "일본어",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "30d9105a-e277-5696-a852-1297738b22de",
+   "word": "読む",
+   "reading": "よむ",
+   "meaning_ko": "읽다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  },
+  {
+   "id": "02335c38-4660-5f55-b671-31a8bfba8c80",
+   "word": "書く",
+   "reading": "かく",
+   "meaning_ko": "쓰다",
+   "jlpt_level": 5,
+   "example_ja": null,
+   "example_ko": null
+  }
+ ]
+}

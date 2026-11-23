@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import KanjiCatalogue from "./kanji-catalogue";
 import { BookText, ChevronDown, Search, X } from "lucide-react";
 import type { KanjiRow, Level, VocabularyKanjiRow, VocabularyRow } from "@/lib/types";
 
@@ -11,7 +12,24 @@ type Props = {
   targetLevel: Level;
 };
 
-export default function LearningView({ kanji, vocabulary, links, targetLevel }: Props) {
+export default function LearningView(props: Props) {
+  const [scope, setScope] = useState(props.targetLevel === 5 ? "n5" : "goal");
+  const catalogue = scope === "basic" || scope === "joyo";
+  return <div className="view-stack">
+    <label className="field-label">학습 범위
+      <select className="input-field" value={scope} onChange={event => setScope(event.target.value)}>
+        <option value="n5">JLPT N5 한자·단어 학습</option>
+        <option value="goal">내 목표 급수 · N{props.targetLevel}</option>
+        <option value="basic">기초 교육한자 · 1,026자</option>
+        <option value="joyo">전체 상용한자 · 2,136자</option>
+      </select>
+    </label>
+    {catalogue ? <KanjiCatalogue key={scope} basic={scope === "basic"}/> :
+      <CourseLibrary key={scope} {...props} targetLevel={scope === "n5" ? 5 : props.targetLevel}/>}
+  </div>;
+}
+
+function CourseLibrary({ kanji, vocabulary, links, targetLevel }: Props) {
   const [kind, setKind] = useState<"kanji" | "vocabulary">("kanji");
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
