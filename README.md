@@ -17,7 +17,7 @@ iPhone과 Galaxy에서 동일하게 사용할 수 있는 모바일 우선 JLPT �
 ## 시작
 1. Node.js 20 이상에서 `npm install`
 2. `.env.example`을 `.env.local`로 복사하고 Supabase 프로젝트의 URL과 **publishable/anon** 키 설정
-3. Supabase SQL Editor에서 `supabase/migrations/001_init.sql` 실행
+3. Supabase SQL Editor에서 `supabase/migrations/`의 SQL 파일을 번호 순서대로 실행 (기존 프로젝트는 미적용 파일만 실행)
 4. Supabase Auth 이메일 로그인을 활성화하고 Site URL/Redirect URL을 개발 및 배포 도메인에 맞게 설정
 5. `npm run dev`로 실행, 휴대폰에서 HTTPS 배포 주소에 접속해 홈 화면에 추가
 
@@ -25,3 +25,9 @@ iPhone과 Galaxy에서 동일하게 사용할 수 있는 모바일 우선 JLPT �
 
 ## 개발
 `npm run dev`, `npm run lint`, `npm run typecheck`, `npm run build`를 사용합니다.
+
+`npm test`는 Node.js 22 이상에서 복습 일정을 검증합니다. 로컬 Supabase에 마이그레이션을 적용한 뒤 아래 명령으로 DB 연동 테스트를 실행할 수 있습니다. 테스트용 계정과 학습 기록은 트랜잭션 종료 시 롤백됩니다.
+
+```sh
+psql postgresql://postgres:postgres@127.0.0.1:54322/postgres -f supabase/tests/rls_smoke.sql
+```

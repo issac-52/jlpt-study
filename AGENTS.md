@@ -22,6 +22,8 @@
 - 구성 가능한 환경변수는 .env.example에 문서화.
 - 설치: npm install. 검증: npm run typecheck && npm run lint && npm run build.
 
+- 사용자가 요청한 코드 변경은 검증을 통과한 뒤 별도 요청 없이 커밋하고 GitHub에 푸시할 것.
+
 ## MVP 완료 기준
 - 이메일 회원가입/로그인/로그아웃과 독립 계정
 - 한자/단어 탐색과 연결, 의미/읽기 복습 기록

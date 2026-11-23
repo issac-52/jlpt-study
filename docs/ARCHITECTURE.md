@@ -19,7 +19,7 @@ friend_requests: sender_id + recipient_id, pending/accepted/rejected.
 
 ## DB 보안
 - 학습 콘텐츠는 로그인 사용자만 select, 쓰기는 마이그레이션/운영 경로 전용.
-- profiles: 자기 것은 수정 가능; 읽기는 본인 및 요청 관계 당사자/수락된 친구로 최소화.
+- profiles: 본인만 직접 읽고 수정 가능. 대기 중인 요청의 상대 닉네임은 `get_pending_friend_names()` RPC로 조회.
 - review_state/review_logs: 자기 것만 CRUD/select.
 - friend_requests: 참가자에게만 select; 수락/거절은 수신자에게만 update.
 - 친구 코드 조회 및 요청 생성은 입력 제한된 security definer RPC 이용.

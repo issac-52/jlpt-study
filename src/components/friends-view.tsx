@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Check, Copy, RefreshCw, Send, UserRoundCheck, UsersRound, X } from "lucide-react";
 import type { FriendRequest, FriendStat, Profile } from "@/lib/types";
 
@@ -33,7 +33,9 @@ export default function FriendsView({ userId, profile, requests, people, stats, 
   const outgoing=requests.filter(r=>r.sender_id===userId && r.status==="pending");
   const accepted=stats.filter(s=>s.user_id!==userId);
 
-  async function send() {
+  async function send(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (busy || code.length !== 10) return;
     setBusy(true);setMessage("");
     try { const response=await onSend(code.trim().toUpperCase());setMessage(resultMessages[response]??response);if(response==="sent")setCode(""); }
     catch(e){setMessage(e instanceof Error?e.message:"요청을 보낼 수 없어요.");}
@@ -53,7 +55,13 @@ export default function FriendsView({ userId, profile, requests, people, stats, 
   return <section className="view-stack">
     <div className="section-head"><div><span className="eyebrow">STUDY TOGETHER</span><h2>같이 하면 더 꾸준하게</h2><p>각자 다른 급수를 공부해도 좋아요.</p></div></div>
     <div className="invite-card"><span className="label-light">나의 친구 코드</span><div className="invite-code"><strong>{profile.friend_code}</strong><button className="icon-button light" onClick={copyCode} aria-label="친구 코드 복사"><Copy size={19}/></button></div><p>코드를 친구에게 공유해 초대를 받아보세요.</p></div>
-    <div className="white-panel"><label className="field-label">친구 코드 입력<div className="invite-form"><input className="input-field" value={code} onChange={e=>setCode(e.target.value.toUpperCase())} maxLength={10} placeholder="친구의 10자리 코드"/><button className="primary-icon" disabled={busy || code.length!==10} onClick={send} aria-label="친구 요청 보내기"><Send size={18}/></button></div></label></div>
+    <form className="white-panel" onSubmit={send}>
+      <label className="field-label" htmlFor="friend-code">친구 코드 입력</label>
+      <div className="invite-form">
+        <input id="friend-code" className="input-field" value={code} onChange={e=>setCode(e.target.value.toUpperCase())} maxLength={10} placeholder="친구의 10자리 코드" autoCapitalize="characters" autoCorrect="off" spellCheck={false}/>
+        <button type="submit" className="primary-icon" disabled={busy || code.length!==10} aria-label="친구 요청 보내기"><Send size={18}/></button>
+      </div>
+    </form>
     {message&&<p className="status-ok" role="status">{message}</p>}
     {incoming.length>0&&<div className="white-panel"><div className="card-header"><h3>받은 요청</h3><span className="count-pill">{incoming.length}</span></div>{incoming.map(r=><div key={r.id} className="friend-row"><span className="avatar-round"><UsersRound size={18}/></span><strong>{nameOf(r.sender_id)}</strong><div className="friend-actions"><button disabled={busy} className="tiny-button" onClick={()=>respond(r.id,false)} aria-label="친구 요청 거절"><X size={17}/></button><button disabled={busy} className="tiny-button positive" onClick={()=>respond(r.id,true)} aria-label="친구 요청 수락"><Check size={17}/></button></div></div>)}</div>}
     {outgoing.length>0&&<div className="white-panel"><h3>보낸 요청</h3>{outgoing.map(r=><div key={r.id} className="friend-row"><span className="avatar-round"><UsersRound size={18}/></span><strong>{nameOf(r.recipient_id)}</strong><small>수락 대기 중</small></div>)}</div>}

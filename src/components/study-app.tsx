@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { User } from "@supabase/supabase-js";
+import type { SupabaseClient, User } from "@supabase/supabase-js";
 import { ArrowRight, BookOpenText, CalendarCheck2, ChevronRight, CircleHelp, Flame, House, Layers, LogOut, RotateCcw, Settings2, Sparkles, UsersRound } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { cardKey, getNextReview, isDue, makeCards } from "@/lib/study";
@@ -34,6 +34,24 @@ export default function StudyApp() {
   const client = useMemo(() => getSupabase(), []);
   const [user, setUser] = useState<User | null>(null);
   const [authReady, setAuthReady] = useState(false);
+  useEffect(() => {
+    if (!client) return;
+    const { data: { subscription } } = client.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      setAuthReady(true);
+    });
+    return () => subscription.unsubscribe();
+  }, [client]);
+
+  if (!client) return <div className="setup-page"><div className="logo-mark"><BookOpenText size={25}/></div><span className="eyebrow">KOTOBA / SETUP</span><h1>이제 첫 페이지가<br/>준비됐어요.</h1><p>Supabase를 연결하면 회원가입, 한자·단어 학습과 친구 기능을 이용할 수 있어요.</p><div className="setup-code">.env.local<br/>NEXT_PUBLIC_SUPABASE_URL=...<br/>NEXT_PUBLIC_SUPABASE_ANON_KEY=...</div><p className="helper-copy">README.md에 있는 SQL 마이그레이션도 먼저 실행해 주세요.</p></div>;
+  if(!authReady) return <div className="loading-page"><div className="logo-mark"><BookOpenText size={27}/></div><p>로그인 상태를 확인하고 있어요…</p></div>;
+  if(!user) return <AuthScreen client={client}/>;
+
+  return <SignedInStudyApp key={user.id} client={client} user={user}/>;
+}
+
+function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User }) {
+  const userId = user.id;
   const [nowMs, setNowMs] = useState(() => Date.now());
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -53,41 +71,22 @@ export default function StudyApp() {
   const [revealed, setRevealed] = useState(false);
   const [profileEditing, setProfileEditing] = useState(false);
 
-  useEffect(() => {
-    if (!client) return;
-    let active = true;
-    void client.auth.getUser().then(({ data, error: authError }) => {
-      if (active) {
-        setUser(data.user);
-        if (authError) setError(authError.message);
-        setAuthReady(true);
-      }
-    }).catch(() => { if (active) { setError("로그인 상태를 확인하지 못했어요."); setAuthReady(true); } });
-    const { data: { subscription } } = client.auth.onAuthStateChange((_event, session) => {
-      if (active) {
-        setUser(session?.user ?? null);
-        setAuthReady(true);
-      }
-    });
-    return () => { active = false; subscription.unsubscribe(); };
-  }, [client]);
-
   const refresh = useCallback(async () => {
-    if (!client || !user) return;
     setLoading(true);
     try {
       const lastMonth = new Date(Date.now() - 35 * 86_400_000).toISOString();
-      const [p, k, v, link, rev, log, req, stat] = await Promise.all([
-        client.from("profiles").select("id,nickname,target_level,friend_code").eq("id",user.id).single(),
+      const [p, k, v, link, rev, log, req, stat, names] = await Promise.all([
+        client.from("profiles").select("id,nickname,target_level,friend_code").eq("id",userId).single(),
         client.from("kanji").select("id,character,meaning_ko,onyomi,kunyomi,jlpt_level").order("character"),
         client.from("vocabulary").select("id,word,reading,meaning_ko,jlpt_level,example_ja,example_ko").order("word"),
         client.from("vocabulary_kanji").select("vocabulary_id,kanji_id,position"),
-        client.from("review_state").select("user_id,item_type,item_id,review_mode,streak,interval_days,due_at,updated_at").eq("user_id",user.id),
-        client.from("review_logs").select("reviewed_at").eq("user_id",user.id).gte("reviewed_at", lastMonth).order("reviewed_at",{ascending:false}).limit(2000),
+        client.from("review_state").select("user_id,item_type,item_id,review_mode,streak,interval_days,due_at,updated_at").eq("user_id",userId),
+        client.from("review_logs").select("reviewed_at").eq("user_id",userId).gte("reviewed_at", lastMonth).order("reviewed_at",{ascending:false}).limit(2000),
         client.from("friend_requests").select("id,sender_id,recipient_id,status"),
         client.rpc("get_friend_progress"),
+        client.rpc("get_pending_friend_names"),
       ]);
-      const firstError = [p,k,v,link,rev,log,req,stat].find(result=>result.error)?.error;
+      const firstError = [p,k,v,link,rev,log,req,stat,names].find(result=>result.error)?.error;
       if (firstError) throw firstError;
       if (!p.data) throw new Error("프로필이 없어요. 데이터베이스 초기화 상태를 확인해 주세요.");
       setProfile(p.data as Profile);
@@ -96,15 +95,9 @@ export default function StudyApp() {
       setLinks((link.data ?? []) as VocabularyKanjiRow[]);
       setReviewRows((rev.data ?? []) as ReviewRow[]);
       setLogs((log.data ?? []) as ReviewLog[]);
-      const requestRows=(req.data ?? []) as FriendRequest[];
-      setRequests(requestRows);
+      setRequests((req.data ?? []) as FriendRequest[]);
       setStats((stat.data ?? []) as FriendStat[]);
-      const ids=Array.from(new Set(requestRows.flatMap(r=>[r.sender_id,r.recipient_id]).filter(id=>id!==user.id)));
-      if (ids.length>0) {
-        const {data:friends,error:friendsError}=await client.from("profiles").select("id,nickname").in("id",ids);
-        if (friendsError) throw friendsError;
-        setPeople((friends??[]) as {id:string;nickname:string}[]);
-      } else setPeople([]);
+      setPeople((names.data ?? []) as { id: string; nickname: string }[]);
       setNowMs(Date.now());
       setError("");
     } catch (cause) {
@@ -112,29 +105,17 @@ export default function StudyApp() {
     } finally {
       setLoading(false);
     }
-  }, [client,user]);
+  }, [client,userId]);
 
   useEffect(() => {
     let cancelled = false;
     // Schedule after the effect so React state isn't synchronously cascaded.
     void Promise.resolve().then(() => {
       if (cancelled) return;
-      if (user) void refresh();
-      else {
-        setProfile(null);
-        setKanji([]);
-        setVocabulary([]);
-        setLinks([]);
-        setReviewRows([]);
-        setLogs([]);
-        setQueue([]);
-        setRequests([]);
-        setPeople([]);
-        setStats([]);
-      }
+      void refresh();
     });
     return () => { cancelled = true; };
-  }, [user,refresh]);
+  }, [refresh]);
 
   const targetLevel=profile?.target_level ?? 5;
   const cards=useMemo(()=>makeCards(kanji,vocabulary).filter(c=>c.level>=targetLevel),[kanji,vocabulary,targetLevel]);
@@ -165,14 +146,14 @@ export default function StudyApp() {
   }
 
   async function score(correct:boolean) {
-    if(!client || !user || !currentCard || saving) return;
+    if(!currentCard || saving) return;
     setSaving(true);
     setError("");
     try {
       const previous=reviewsByKey.get(currentCard.key);
       const next=getNextReview(previous,correct);
       const row:ReviewRow={
-        user_id:user.id,
+        user_id:userId,
         item_type:currentCard.itemType,
         item_id:currentCard.itemId,
         review_mode:currentCard.reviewMode,
@@ -182,7 +163,7 @@ export default function StudyApp() {
       if(saveError) throw saveError;
       // The progress save is authoritative. A logging error must not cause duplicate scoring.
       const {error:logError}=await client.from("review_logs").insert({
-        user_id:user.id,
+        user_id:userId,
         item_type:currentCard.itemType,
         item_id:currentCard.itemId,
         review_mode:currentCard.reviewMode,
@@ -200,8 +181,8 @@ export default function StudyApp() {
   }
 
   async function setTarget(level:Level) {
-    if(!client || !user || !profile) return;
-    const {error:updateError}=await client.from("profiles").update({target_level:level}).eq("id",user.id);
+    if(!profile) return;
+    const {error:updateError}=await client.from("profiles").update({target_level:level}).eq("id",userId);
     if(updateError){setError(updateError.message);return;}
     setProfile({...profile,target_level:level});
     setQueue([]);
@@ -209,30 +190,22 @@ export default function StudyApp() {
   }
 
   async function sendFriend(code:string):Promise<string> {
-    if(!client) throw new Error("서버 연결이 없어요.");
     const {data,error:rpcError}=await client.rpc("request_friend_by_code",{p_code:code});
     if(rpcError) throw rpcError;
     await refresh();
     return String(data);
   }
   async function respondFriend(id:string,accept:boolean) {
-    if(!client || !user) return;
     const {error:replyError}=await client.from("friend_requests").update({status:accept?"accepted":"rejected"})
-      .eq("id",id).eq("recipient_id",user.id).eq("status","pending");
+      .eq("id",id).eq("recipient_id",userId).eq("status","pending");
     if(replyError) throw replyError;
     await refresh();
   }
 
   async function signOut() {
-    if(!client) return;
     const {error:signOutError}=await client.auth.signOut();
     if(signOutError) setError(signOutError.message);
-    else {setTab("home");setError("");}
   }
-
-  if (!client) return <div className="setup-page"><div className="logo-mark"><BookOpenText size={25}/></div><span className="eyebrow">KOTOBA / SETUP</span><h1>이제 첫 페이지가<br/>준비됐어요.</h1><p>Supabase를 연결하면 회원가입, 한자·단어 학습과 친구 기능을 이용할 수 있어요.</p><div className="setup-code">.env.local<br/>NEXT_PUBLIC_SUPABASE_URL=...<br/>NEXT_PUBLIC_SUPABASE_ANON_KEY=...</div><p className="helper-copy">README.md에 있는 SQL 마이그레이션도 먼저 실행해 주세요.</p></div>;
-  if(!authReady) return <div className="loading-page"><div className="logo-mark"><BookOpenText size={27}/></div><p>로그인 상태를 확인하고 있어요…</p></div>;
-  if(!user) return <AuthScreen client={client}/>;
 
   return <div className="app-shell">
     <header className="topbar">
@@ -241,13 +214,19 @@ export default function StudyApp() {
       </button>
       <div className="top-actions">
         {profile && <span className="level-badge">N{targetLevel} 목표</span>}
-        <button type="button" className="avatar-button" onClick={()=>setProfileEditing(v=>!v)} aria-label="학습 목표와 계정 설정"><Settings2 size={19}/></button>
+        <button type="button" className="avatar-button" onClick={()=>setProfileEditing(v=>!v)} aria-label="학습 목표와 계정 설정" aria-expanded={profileEditing} aria-controls={profileEditing ? "account-settings" : undefined}><Settings2 size={19}/></button>
       </div>
     </header>
-    {profileEditing && <div className="settings-panel"><div><strong>{profile?.nickname ?? "학습자"}</strong><small>{user.email}</small></div><label>학습 목표 급수<select value={targetLevel} onChange={e=>void setTarget(Number(e.target.value) as Level)}>{levels.map(n=><option key={n} value={n}>JLPT N{n}</option>)}</select></label><button type="button" onClick={()=>void signOut()} className="logout-button"><LogOut size={16}/> 로그아웃</button></div>}
+    {profileEditing && <div id="account-settings" className="settings-panel"><div><strong>{profile?.nickname ?? "학습자"}</strong><small>{user.email}</small></div><label>학습 목표 급수<select value={targetLevel} onChange={e=>void setTarget(Number(e.target.value) as Level)}>{levels.map(n=><option key={n} value={n}>JLPT N{n}</option>)}</select></label><button type="button" onClick={()=>void signOut()} className="logout-button"><LogOut size={16}/> 로그아웃</button></div>}
     <main className="content">
-      {error && <div className="alert-error" role="alert"><CircleHelp size={17}/><span>{error}</span><button type="button" onClick={()=>setError("")} aria-label="오류 닫기">×</button></div>}
-      {loading && !profile ? <div className="loading-state">공부 내용을 불러오고 있어요…</div> : <>
+      {error && <div className="alert-error" role="alert"><CircleHelp size={17}/><span>{error}</span>{profile && <button type="button" onClick={()=>setError("")} aria-label="오류 닫기">×</button>}</div>}
+      {!profile ? (
+        <div className="loading-state">
+          {loading || !error ? <p role="status">공부 내용을 불러오고 있어요…</p> : (
+            <button type="button" className="primary-button" onClick={() => void refresh()}>다시 시도</button>
+          )}
+        </div>
+      ) : <>
         {tab==="home" && <section className="view-stack">
           <div className="hero-panel">
             <div className="hero-copy"><span className="hero-eyebrow"><Sparkles size={14}/> 오늘도 조금씩, 꾸준히</span><h1>{profile?.nickname ?? "학습자"}님,<br/>한 글자씩<br/><em>쌓아가요.</em></h1><p>이해하고, 연결하고, 오래 기억하기.</p></div>
@@ -269,7 +248,7 @@ export default function StudyApp() {
         </section>}
         {tab==="learn" && <LearningView kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
         {tab==="review" && <ReviewView card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} revealed={revealed} saving={saving} finished={finished} onReveal={()=>setRevealed(true)} onScore={correct=>void score(correct)} onStart={startReview}/>}
-        {tab==="friends" && profile && <FriendsView userId={user.id} profile={profile} requests={requests} people={people} stats={stats} onSend={sendFriend} onRespond={respondFriend} onRefresh={refresh}/>}
+        {tab==="friends" && profile && <FriendsView userId={userId} profile={profile} requests={requests} people={people} stats={stats} onSend={sendFriend} onRespond={respondFriend} onRefresh={refresh}/>}
       </>}
     </main>
     <nav className="bottom-nav" aria-label="주 메뉴">
