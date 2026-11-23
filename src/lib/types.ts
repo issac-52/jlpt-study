@@ -2,7 +2,7 @@ export type Level = 5 | 4 | 3 | 2 | 1;
 export type ItemType = "kanji" | "vocabulary";
 export type ReviewMode = "meaning" | "reading";
 
-export type Profile = { id: string; nickname: string; target_level: Level; };
+export type Profile = { id: string; nickname: string; target_level: Level; daily_new_goal: number; daily_review_goal: number; };
 
 export type KanjiRow = {
   id: string;
@@ -38,6 +38,8 @@ export type ReviewRow = {
   interval_days: number;
   due_at: string;
   updated_at: string;
+  first_studied_at?: string;
+  last_reviewed_at?: string | null;
 };
 
 export type StudyCard = {

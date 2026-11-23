@@ -4,6 +4,7 @@ import { Check, Eye, RotateCcw, Sparkles, X } from "lucide-react";
 import type { StudyCard } from "@/lib/types";
 
 type Props = {
+  sessionLabel: string;
   card: StudyCard | null;
   index: number;
   total: number;
@@ -16,12 +17,12 @@ type Props = {
   onStart: () => void;
 };
 
-export default function ReviewView({ card,index,total,dueCount,revealed,saving,finished,onReveal,onScore,onStart }: Props) {
-  if (finished) return <section className="view-stack review-finished"><span className="finish-illustration"><Sparkles size={40}/></span><span className="eyebrow">WELL DONE</span><h2>오늘도 한 걸음 성장했어요.</h2><p>{total}개 카드를 복습했어요. 기억은 짧게, 반복은 꾸준하게.</p><button className="primary-button" onClick={onStart}>남은 카드 확인하기 <RotateCcw size={18}/></button></section>;
-  if (!card) return <section className="view-stack"><span className="eyebrow">SMART REVIEW</span><h2>오늘의 복습</h2><p className="view-description">어렴풋이 아는 단어도 직접 떠올려 봐요. 정답을 확인한 뒤 스스로 평가합니다.</p><div className="review-empty"><RotateCcw size={30}/><strong>지금 복습할 카드 {dueCount}개</strong><p>새 카드와 복습 예정 카드를 함께 연습해요.</p></div><button className="primary-button" disabled={dueCount===0} onClick={onStart}>{dueCount===0?"복습할 카드가 없어요":"복습 시작"} <Sparkles size={18}/></button></section>;
+export default function ReviewView({ sessionLabel,card,index,total,dueCount,revealed,saving,finished,onReveal,onScore,onStart }: Props) {
+  if (finished) return <section className="view-stack review-finished"><span className="finish-illustration"><Sparkles size={40}/></span><span className="eyebrow">WELL DONE</span><h2>오늘도 한 걸음 성장했어요.</h2><p>{total}장의 카드를 마쳤어요. 기억은 짧게, 반복은 꾸준하게.</p><button className="primary-button" onClick={onStart}>오늘의 복습 확인하기 <RotateCcw size={18}/></button></section>;
+  if (!card) return <section className="view-stack"><span className="eyebrow">SMART REVIEW</span><h2>오늘의 복습</h2><p className="view-description">어렴풋이 아는 단어도 직접 떠올려 봐요. 정답을 확인한 뒤 스스로 평가합니다.</p><div className="review-empty"><RotateCcw size={30}/><strong>지금 복습할 카드 {dueCount}개</strong><p>학습한 카드 중 복습 시간이 된 카드를 연습해요.</p></div><button className="primary-button" disabled={dueCount===0} onClick={onStart}>{dueCount===0?"복습할 카드가 없어요":"복습 시작"} <Sparkles size={18}/></button></section>;
   const progress=Math.round((index/Math.max(total,1))*100);
   return <section className="view-stack review-screen">
-    <div className="review-top"><div><span className="eyebrow">FOCUS MODE</span><h2>기억을 꺼내는 시간</h2></div><span className="review-counter">{index+1} / {total}</span></div>
+    <div className="review-top"><div><span className="eyebrow">FOCUS MODE</span><h2>{sessionLabel}</h2></div><span className="review-counter">{index+1} / {total}</span></div>
     <div className="progress-track"><div className="progress-fill" style={{width:`${progress}%`}}/></div>
     <div className="flashcard" aria-live="polite">
       <span className="flashcard-badge">{card.itemType==="kanji"?"한자 뜻":card.reviewMode==="reading"?"단어 읽기":"단어 뜻"} · N{card.level}</span>

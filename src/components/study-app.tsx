@@ -2,16 +2,17 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { SupabaseClient, User } from "@supabase/supabase-js";
-import { ArrowRight, BookOpenText, CalendarCheck2, ChevronRight, CircleHelp, Flame, House, Layers, LogOut, RotateCcw, Settings2, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpenText, CalendarCheck2, ChevronRight, CircleHelp, Flame, House, Layers, RotateCcw, Settings2, Sparkles } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
-import { cardKey, getNextReview, isDue, makeCards } from "@/lib/study";
-import type { KanjiRow, Level, Profile, ReviewRow, StudyCard, VocabularyKanjiRow, VocabularyRow } from "@/lib/types";
+import { cardKey, getNextReview, dailyPlan, makeCards } from "@/lib/study";
+import type { KanjiRow, Profile, ReviewRow, StudyCard, VocabularyKanjiRow, VocabularyRow } from "@/lib/types";
 import AuthScreen from "./auth-screen";
 import { includeN5 } from "@/lib/n5";
 import LearningView from "./learning-view";
+import PersonalSettings, { type Goals } from "./personal-settings";
 import ReviewView from "./review-view";
 
-type Tab = "home" | "learn" | "review";
+type Tab = "home" | "learn" | "review" | "settings";
 type ReviewLog = { reviewed_at: string };
 
 function dayKey(date: Date) {
@@ -28,14 +29,14 @@ function dayStreak(logs: ReviewLog[], nowMs: number) {
   }
   return count;
 }
-const levels: Level[] = [5,4,3,2,1];
+
 
 async function loadReviewState(client: SupabaseClient, userId: string) {
   const rows: ReviewRow[] = [];
   const pageSize = 500;
   for (let offset = 0; ; offset += pageSize) {
     const { data, error } = await client.from("review_state")
-      .select("user_id,item_type,item_id,review_mode,streak,interval_days,due_at,updated_at")
+      .select("*")
       .eq("user_id", userId).order("item_type").order("item_id").order("review_mode")
       .range(offset, offset + pageSize - 1);
     if (error) throw error;
@@ -80,14 +81,14 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
   const [queue, setQueue] = useState<StudyCard[]>([]);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
-  const [profileEditing, setProfileEditing] = useState(false);
+  const [sessionKind, setSessionKind] = useState<"new" | "review" | "missed">("review");
 
   const refresh = useCallback(async () => {
     setLoading(true);
     try {
       const lastMonth = new Date(Date.now() - 35 * 86_400_000).toISOString();
       const [p, k, v, link, rev, log] = await Promise.all([
-        client.from("profiles").select("id,nickname,target_level").eq("id",userId).single(),
+        client.from("profiles").select("*").eq("id",userId).single(),
         client.from("kanji").select("id,character,meaning_ko,onyomi,kunyomi,jlpt_level").order("character"),
         client.from("vocabulary").select("id,word,reading,meaning_ko,jlpt_level,example_ja,example_ko").order("word"),
         client.from("vocabulary_kanji").select("vocabulary_id,kanji_id,position"),
@@ -125,7 +126,11 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
 
   const targetLevel=profile?.target_level ?? 5;
   const allCards = useMemo(() => makeCards(kanji, vocabulary), [kanji, vocabulary]);
-  const cards = useMemo(() => allCards.filter(c => c.level >= targetLevel), [allCards, targetLevel]);
+  const newGoal = profile?.daily_new_goal ?? 10;
+  const reviewGoal = profile?.daily_review_goal ?? 20;
+  const plan = useMemo(() => dailyPlan(allCards, reviewRows, targetLevel, nowMs, newGoal, reviewGoal),
+    [allCards, reviewRows, targetLevel, nowMs, newGoal, reviewGoal]);
+  const { dueCards, newCards } = plan;
   const reviewsByKey=useMemo(()=>new Map(reviewRows.map(r=>[cardKey(r.item_type,r.item_id,r.review_mode),r])),[reviewRows]);
   const missedCards = useMemo(() => allCards
     .filter(card => reviewsByKey.get(card.key)?.streak === 0)
@@ -135,7 +140,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
     const nextDue = reviewRows.reduce((next, row) => {
       const due = Date.parse(row.due_at);
       return due > nowMs ? Math.min(next, due) : next;
-    }, Infinity);
+    }, plan.nextMidnight);
     const updateClock = () => setNowMs(Date.now());
     const timer = Number.isFinite(nextDue)
       ? window.setTimeout(updateClock, Math.min(2_147_483_647, Math.max(0, nextDue - Date.now())))
@@ -145,11 +150,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
       window.clearTimeout(timer);
       document.removeEventListener("visibilitychange", updateClock);
     };
-  }, [reviewRows, nowMs]);
-  const dueCards = useMemo(() => {
-    const now = new Date(nowMs);
-    return cards.filter(card => isDue(reviewsByKey.get(card.key), now));
-  }, [cards, reviewsByKey, nowMs]);
+  }, [reviewRows, nowMs, plan.nextMidnight]);
   const kanjiLearned=new Set(reviewRows.filter(r=>r.item_type==="kanji").map(r=>r.item_id)).size;
   const wordsLearned=new Set(reviewRows.filter(r=>r.item_type==="vocabulary").map(r=>r.item_id)).size;
   const streak=dayStreak(logs,nowMs);
@@ -158,22 +159,13 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
   const finished=queue.length>0 && reviewIndex>=queue.length;
 
   function startReview() {
-    setError("");
-    const due=cards.filter(c=>isDue(reviewsByKey.get(c.key)));
-    // Existing due cards first, then new cards. A session is capped at 12 to keep it approachable.
-    due.sort((a,b)=>{
-      const aa=reviewsByKey.get(a.key)?.due_at;
-      const bb=reviewsByKey.get(b.key)?.due_at;
-      if (aa && !bb) return -1;
-      if (!aa && bb) return 1;
-      return (aa??"").localeCompare(bb??"");
-    });
-    beginReview(due);
+    beginReview(dueCards, "review");
   }
 
-  function beginReview(selected: StudyCard[]) {
+  function beginReview(selected: StudyCard[], kind: typeof sessionKind) {
     setError("");
-    setQueue(selected.slice(0, 12));
+    setSessionKind(kind);
+    setQueue(selected);
     setReviewIndex(0);
     setRevealed(false);
     setTab("review");
@@ -194,7 +186,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
         review_mode:card.reviewMode,
         ...next,
       };
-      const {error:saveError}=await client.from("review_state").upsert(row,{onConflict:"user_id,item_type,item_id,review_mode"});
+      const {data:stored,error:saveError}=await client.from("review_state").upsert(row,{onConflict:"user_id,item_type,item_id,review_mode"}).select("*").single();
       if(saveError) throw saveError;
       // The progress save is authoritative. A logging error must not cause duplicate scoring.
       const {error:logError}=await client.from("review_logs").insert({
@@ -204,7 +196,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
         review_mode:card.reviewMode,
         correct,
       });
-      setReviewRows(existing=>[...existing.filter(r=>cardKey(r.item_type,r.item_id,r.review_mode)!==card.key),row]);
+      setReviewRows(existing=>[...existing.filter(r=>cardKey(r.item_type,r.item_id,r.review_mode)!==card.key),stored as ReviewRow]);
       if (!logError) setLogs(existing=>[{reviewed_at:new Date().toISOString()},...existing]);
       else setError("복습 진도는 저장했지만 통계 기록에 실패했어요. 새로고침 후 확인해 주세요.");
       setNowMs(Date.now());
@@ -216,11 +208,10 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
     } finally {setSaving(false);}
   }
 
-  async function setTarget(level:Level) {
-    if(!profile) return;
-    const {error:updateError}=await client.from("profiles").update({target_level:level}).eq("id",userId);
-    if(updateError){setError(updateError.message);return;}
-    setProfile({...profile,target_level:level});
+  async function saveGoals(goals: Goals) {
+    const { data, error } = await client.from("profiles").update(goals).eq("id", userId).select("*").single();
+    if (error) throw error;
+    setProfile(data as Profile);
     setQueue([]);
     setReviewIndex(0);
   }
@@ -237,10 +228,9 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
       </button>
       <div className="top-actions">
         {profile && <span className="level-badge">N{targetLevel} 목표</span>}
-        <button type="button" className="avatar-button" onClick={()=>setProfileEditing(v=>!v)} aria-label="학습 목표와 계정 설정" aria-expanded={profileEditing} aria-controls={profileEditing ? "account-settings" : undefined}><Settings2 size={19}/></button>
+        <button type="button" className="avatar-button" onClick={()=>setTab("settings")} aria-label="개인 설정"><Settings2 size={19}/></button>
       </div>
     </header>
-    {profileEditing && <div id="account-settings" className="settings-panel"><div><strong>{profile?.nickname ?? "학습자"}</strong><small>{user.email}</small></div><label>학습 목표 급수<select value={targetLevel} onChange={e=>void setTarget(Number(e.target.value) as Level)}>{levels.map(n=><option key={n} value={n}>JLPT N{n}</option>)}</select></label><button type="button" onClick={()=>void signOut()} className="logout-button"><LogOut size={16}/> 로그아웃</button></div>}
     <main className="content">
       {error && <div className="alert-error" role="alert"><CircleHelp size={17}/><span>{error}</span>{profile && <button type="button" onClick={()=>setError("")} aria-label="오류 닫기">×</button>}</div>}
       {!profile ? (
@@ -250,6 +240,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
           )}
         </div>
       ) : <>
+        {tab==="settings" && <PersonalSettings profile={profile} email={user.email} onSave={saveGoals} onSignOut={() => void signOut()}/>}
         {tab==="home" && <section className="view-stack">
           <div className="hero-panel">
             <div className="hero-copy"><span className="hero-eyebrow"><Sparkles size={14}/> 오늘도 조금씩, 꾸준히</span><h1>{profile?.nickname ?? "학습자"}님,<br/>한 글자씩<br/><em>쌓아가요.</em></h1><p>이해하고, 연결하고, 오래 기억하기.</p></div>
@@ -261,25 +252,32 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
             <div className="stat-box"><span className="stat-icon amber"><BookOpenText size={19}/></span><strong>{wordsLearned}<small>개</small></strong><span>배운 단어</span></div>
             <div className="stat-box"><span className="stat-icon pink"><Flame size={19}/></span><strong>{streak}<small>일</small></strong><span>연속 학습</span></div>
           </div>
-          <div className="review-cta"><div className="review-cta-top"><span className="review-cta-icon"><RotateCcw size={20}/></span><span className="eyebrow">SPACED REPETITION</span></div><div className="review-cta-body"><div><h3>오늘의 복습</h3><p>기억이 사라지기 전에 다시 만나기</p></div><span className="due-bubble">{dueCards.length}<small>개</small></span></div><button type="button" className="cta-link" onClick={startReview} disabled={dueCards.length===0}>{dueCards.length===0?"복습 완료":"복습 시작하기"} <ArrowRight size={17}/></button></div>
+          <div className="review-cta"><div className="review-cta-top"><span className="review-cta-icon"><RotateCcw size={20}/></span><span className="eyebrow">SPACED REPETITION</span></div><div className="review-cta-body"><div><h3>오늘의 복습</h3><p>오늘 복습 {plan.reviewDone} / {reviewGoal}장 · 기한이 된 카드 {plan.dueTotal}장</p></div><span className="due-bubble">{dueCards.length}<small>개</small></span></div><button type="button" className="cta-link" onClick={startReview} disabled={dueCards.length===0}>{plan.reviewDone >= reviewGoal ? "오늘의 복습 목표 달성" : dueCards.length ? "복습 시작하기" : "지금 복습할 카드가 없어요"} <ArrowRight size={17}/></button></div>
+          <div className="white-panel"><h3>오늘의 새 학습</h3>
+            <p>N{targetLevel} · 오늘 처음 학습한 카드 {plan.newDone} / {newGoal}장</p>
+            <button className="primary-button" disabled={!newCards.length} onClick={() => beginReview(newCards, "new")}>
+              {newCards.length ? `새 카드 ${newCards.length}장 학습하기` : "오늘의 새 학습 완료"}
+            </button>
+          </div>
           <div className="feature-grid">
             <button className="feature-card" type="button" onClick={()=>setTab("learn")}><span className="feature-glyph">字</span><strong>한자와 단어</strong><small>연결해서 기억하기</small><ChevronRight size={17}/></button>
-            <button className="feature-card mint" type="button" disabled={!missedCards.length || saving} onClick={() => beginReview(missedCards)}>
+            <button className="feature-card mint" type="button" disabled={!missedCards.length || saving} onClick={() => beginReview(missedCards.slice(0, 12), "missed")}>
               <span className="feature-glyph"><RotateCcw size={33}/></span><strong>오답 다시 보기</strong>
               <small>{missedCards.length ? `다시 떠올릴 카드 ${missedCards.length}개` : "다시 볼 오답이 없어요"}</small><ChevronRight size={17}/>
             </button>
           </div>
-          <div className="weekly-panel"><CalendarCheck2 size={18}/><span>최근 7일 동안 <strong>{lastWeekCount}번</strong> 복습했어요.</span></div>
+          <div className="weekly-panel"><CalendarCheck2 size={18}/><span>최근 7일 동안 카드를 <strong>{lastWeekCount}번</strong> 풀었어요.</span></div>
           <p className="helper-copy">JLPT 급수는 학습용 참고 분류입니다.</p>
         </section>}
         {tab==="learn" && <LearningView onScore={(card,correct)=>score(correct,card)} saving={saving} kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
-        {tab==="review" && <ReviewView card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} revealed={revealed} saving={saving} finished={finished} onReveal={()=>setRevealed(true)} onScore={correct=>void score(correct)} onStart={startReview}/>}
+        {tab==="review" && <ReviewView sessionLabel={sessionKind==="new"?"새 학습":sessionKind==="missed"?"오답 복습":"복습"} card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} revealed={revealed} saving={saving} finished={finished} onReveal={()=>setRevealed(true)} onScore={correct=>void score(correct)} onStart={startReview}/>}
       </>}
     </main>
     <nav className="bottom-nav" aria-label="주 메뉴">
       <button type="button" className={tab==="home"?"active":""} onClick={()=>setTab("home")} aria-current={tab==="home"?"page":undefined}><House size={21}/><span>홈</span></button>
       <button type="button" className={tab==="learn"?"active":""} onClick={()=>setTab("learn")} aria-current={tab==="learn"?"page":undefined}><BookOpenText size={21}/><span>학습</span></button>
       <button type="button" className={tab==="review"?"active":""} onClick={()=>setTab("review")} aria-current={tab==="review"?"page":undefined}><RotateCcw size={21}/><span>복습</span></button>
+      <button type="button" className={tab==="settings"?"active":""} onClick={()=>setTab("settings")} aria-current={tab==="settings"?"page":undefined}><Settings2 size={21}/><span>개인</span></button>
     </nav>
   </div>;
 }

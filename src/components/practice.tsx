@@ -56,7 +56,7 @@ export default function Practice({ kanji, vocabulary, level, saving, onScore }: 
     setHits(count => count + Number(correct)); setIndex(i => i + 1); setInput(""); setChecked(false);
   }
   if (!card) return <section className="white-panel">
-    <h2>{queue.length ? "연습 완료" : `N${level} 문제 풀기`}</h2>
+    <h2>{queue.length ? "연습 완료" : `N${level} 자유 연습`}</h2>
     {queue.length > 0 && <p role="status">{queue.length}문제 중 {hits}문제 정답</p>}
     {missed.length > 0 && <button className="primary-button" onClick={() => beginRound(missed)}>이번 오답 {missed.length}개 다시 풀기</button>}
     <label className="field-label">문제 유형<select className="input-field" value={mode} onChange={e => setMode(e.target.value as keyof typeof modes)}>
