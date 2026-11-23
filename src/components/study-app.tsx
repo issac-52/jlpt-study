@@ -1,16 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { SupabaseClient, User } from "@supabase/supabase-js";
 import { ArrowRight, BookOpenText, CalendarCheck2, ChevronRight, CircleHelp, Flame, House, Layers, RotateCcw, Settings2, Sparkles } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
-import { cardKey, getNextReview, dailyPlan, makeCards } from "@/lib/study";
+import { cardKey, getNextReview, dailyPlan, makeCards, matchesAnswer } from "@/lib/study";
 import type { KanjiRow, Profile, ReviewRow, StudyCard, VocabularyKanjiRow, VocabularyRow } from "@/lib/types";
 import AuthScreen from "./auth-screen";
 import { includeN5 } from "@/lib/n5";
 import LearningView from "./learning-view";
 import PersonalSettings, { type Goals } from "./personal-settings";
-import ReviewView from "./review-view";
+import ReviewView, { type ReviewResult } from "./review-view";
 
 type Tab = "home" | "learn" | "review" | "settings";
 type ReviewLog = { reviewed_at: string };
@@ -80,7 +80,8 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
   const [logs, setLogs] = useState<ReviewLog[]>([]);
   const [queue, setQueue] = useState<StudyCard[]>([]);
   const [reviewIndex, setReviewIndex] = useState(0);
-  const [revealed, setRevealed] = useState(false);
+  const [reviewResult, setReviewResult] = useState<ReviewResult | null>(null);
+  const savingRef = useRef(false);
   const [sessionKind, setSessionKind] = useState<"new" | "review" | "missed">("review");
 
   const refresh = useCallback(async () => {
@@ -164,16 +165,17 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
 
   function beginReview(selected: StudyCard[], kind: typeof sessionKind) {
     setError("");
+    if (savingRef.current) return;
     setSessionKind(kind);
     setQueue(selected);
     setReviewIndex(0);
-    setRevealed(false);
+    setReviewResult(null);
     setTab("review");
   }
 
-  async function score(correct:boolean, practiceCard?: StudyCard) {
-    const card = practiceCard ?? currentCard;
-    if(!card || saving) return false;
+  async function score(card: StudyCard, correct: boolean) {
+    if (savingRef.current) return false;
+    savingRef.current = true;
     setSaving(true);
     setError("");
     try {
@@ -200,12 +202,22 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
       if (!logError) setLogs(existing=>[{reviewed_at:new Date().toISOString()},...existing]);
       else setError("복습 진도는 저장했지만 통계 기록에 실패했어요. 새로고침 후 확인해 주세요.");
       setNowMs(Date.now());
-      if (!practiceCard) { setReviewIndex(i=>i+1); setRevealed(false); }
       return true;
     } catch(cause) {
       setError(cause instanceof Error?cause.message:"복습 결과를 저장하지 못했어요.");
       return false;
-    } finally {setSaving(false);}
+    } finally { savingRef.current = false; setSaving(false); }
+  }
+
+  async function submitReview(input: string) {
+    if (!currentCard || reviewResult) return;
+    const correct = matchesAnswer(currentCard, input);
+    if (await score(currentCard, correct)) setReviewResult({ input, correct });
+  }
+
+  function nextReview() {
+    setReviewIndex(index => index + 1);
+    setReviewResult(null);
   }
 
   async function saveGoals(goals: Goals) {
@@ -269,8 +281,8 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
           <div className="weekly-panel"><CalendarCheck2 size={18}/><span>최근 7일 동안 카드를 <strong>{lastWeekCount}번</strong> 풀었어요.</span></div>
           <p className="helper-copy">JLPT 급수는 학습용 참고 분류입니다.</p>
         </section>}
-        {tab==="learn" && <LearningView onScore={(card,correct)=>score(correct,card)} saving={saving} kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
-        {tab==="review" && <ReviewView sessionLabel={sessionKind==="new"?"새 학습":sessionKind==="missed"?"오답 복습":"복습"} card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} revealed={revealed} saving={saving} finished={finished} onReveal={()=>setRevealed(true)} onScore={correct=>void score(correct)} onStart={startReview}/>}
+        {tab==="learn" && <LearningView onScore={score} saving={saving} kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
+        {tab==="review" && <ReviewView key={currentCard?.key ?? "summary"} sessionLabel={sessionKind==="new"?"새 학습":sessionKind==="missed"?"오답 복습":"복습"} card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} result={reviewResult} saving={saving} finished={finished} onSubmit={submitReview} onNext={nextReview} onStart={startReview}/>}
       </>}
     </main>
     <nav className="bottom-nav" aria-label="주 메뉴">

@@ -2,6 +2,24 @@ import type { KanjiRow, ReviewMode, ReviewRow, StudyCard, VocabularyRow } from "
 
 export const REVIEW_INTERVALS_DAYS = [1, 3, 7, 14, 30, 60] as const;
 
+function normalize(text: string) {
+  return text.normalize("NFKC").toLowerCase().replace(/\s+/g, "")
+    .replace(/[ァ-ヶ]/g, kana => String.fromCharCode(kana.charCodeAt(0) - 96));
+}
+
+export function matchesAnswer(card: Pick<StudyCard, "answer" | "itemType">, input: string) {
+  const submitted = normalize(input);
+  if (!submitted) return false;
+  const answers = card.answer.split(/[·,;/]/);
+  if (card.itemType === "kanji") {
+    for (const meaning of [...answers]) {
+      const match = meaning.trim().match(/^(.+) [가-힣]$/);
+      if (match) answers.push(match[1]);
+    }
+  }
+  return answers.some(answer => normalize(answer) === submitted);
+}
+
 export function cardKey(itemType: string, itemId: string, mode: ReviewMode): string {
   return `${itemType}:${itemId}:${mode}`;
 }

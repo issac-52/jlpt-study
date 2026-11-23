@@ -33,6 +33,14 @@ export default function PersonalSettings({ profile, email, onSave, onSignOut }: 
       <button className="primary-button" disabled={busy}>{busy ? "저장 중…" : "설정 저장"}</button>
       {message && <p role="status">{message}</p>}
     </form>
+    <section className="white-panel">
+      <h3>휴대폰에 앱 설치하기</h3>
+      <h4>안드로이드 · Chrome</h4>
+      <p>Chrome에서 Kotoba를 열고 주소창 옆 메뉴(⋮)를 누르세요. ‘앱 설치’ 또는 ‘홈 화면에 추가’를 선택한 뒤 ‘설치’를 누르세요.</p>
+      <h4>아이폰 · Safari</h4>
+      <p>Safari에서 Kotoba를 열고 공유 버튼(위쪽 화살표가 있는 사각형)을 누르세요. ‘홈 화면에 추가’를 선택하고, ‘웹 앱으로 열기’가 보이면 켠 뒤 ‘추가’를 누르세요.</p>
+      <p className="helper-copy">홈 화면의 Kotoba 아이콘으로 실행할 수 있어요. 학습 기록을 저장하려면 인터넷에 연결해 주세요.</p>
+    </section>
     <button className="reveal-button" onClick={onSignOut}>로그아웃</button>
   </section>;
 }

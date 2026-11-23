@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "한자와 단어를 연결해서, 매일 조금씩 공부하세요.",
   applicationName: "Kotoba",
   appleWebApp: { capable: true, statusBarStyle: "default", title: "Kotoba" },
-  icons: { icon: "/icon.svg" },
+  icons: { icon: "/icon.svg", apple: { url: "/icons/apple-touch-icon.png", sizes: "180x180" } },
 };
 export const viewport: Viewport = {
   width: "device-width",

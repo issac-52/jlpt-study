@@ -1,26 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { makeCards } from "@/lib/study";
+import { makeCards, matchesAnswer } from "@/lib/study";
 import type { KanjiRow, Level, StudyCard, VocabularyRow } from "@/lib/types";
 
 const modes = { kanji: "한자 뜻", reading: "단어 읽기", meaning: "단어 뜻", mixed: "섞어서 풀기" };
-
-function normalize(text: string) {
-  return text.normalize("NFKC").toLowerCase().replace(/\s+/g, "")
-    .replace(/[ァ-ヶ]/g, kana => String.fromCharCode(kana.charCodeAt(0) - 96));
-}
-
-function matchesAnswer(card: StudyCard, input: string) {
-  const answers = card.answer.split(/[·,;/]/);
-  if (card.itemType === "kanji") {
-    for (const meaning of [...answers]) {
-      const match = meaning.trim().match(/^(.+) [가-힣]$/);
-      if (match) answers.push(match[1]);
-    }
-  }
-  return answers.some(answer => normalize(answer) === normalize(input));
-}
 
 type Props = {
   kanji: KanjiRow[]; vocabulary: VocabularyRow[]; level: Level; saving: boolean;
