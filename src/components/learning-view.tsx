@@ -18,6 +18,24 @@ export default function LearningView(props: Props & { onScore: (card: StudyCard,
   const [browse, setBrowse] = useState(false);
   const level = Number(scope) as Level;
   const catalogue = scope === "basic" || scope === "joyo";
+  const label = catalogue ? (scope === "basic" ? "기초 교육한자" : "상용한자") : `N${level}`;
+  const scopedKanji = useMemo(() => props.kanji.filter(k => catalogue
+    ? k.catalogue && (scope === "joyo" || k.catalogue.basic)
+    : k.jlpt_level === level), [props.kanji, scope, level, catalogue]);
+  const linkedWords = useMemo(() => {
+    const ids = new Set(scopedKanji.map(k => k.id));
+    const words = new Set(props.links.filter(link => ids.has(link.kanji_id)).map(link => link.vocabulary_id));
+    return props.vocabulary.filter(v => words.has(v.id));
+  }, [props.vocabulary, props.links, scopedKanji]);
+  const levelWords = useMemo(() => props.vocabulary.filter(v => v.jlpt_level === level), [props.vocabulary, level]);
+  const [wordSource, setWordSource] = useState("level");
+  const scopedWords = catalogue || wordSource === "kanji" ? linkedWords : levelWords;
+  const wordFilter = !catalogue && <label className="field-label">단어 범위
+    <select className="input-field" value={wordSource} onChange={e => setWordSource(e.target.value)}>
+      <option value="level">N{level} 어휘 · {levelWords.length}개</option>
+      <option value="kanji">N{level} 한자가 쓰인 단어 · {linkedWords.length}개</option>
+    </select>
+  </label>;
   return <div className="view-stack">
     <label className="field-label">학습 범위
       <select className="input-field" value={scope} onChange={event => setScope(event.target.value)}>
@@ -26,17 +44,17 @@ export default function LearningView(props: Props & { onScore: (card: StudyCard,
         <option value="joyo">전체 상용한자 · 2,136자</option>
       </select>
     </label>
-    {!catalogue && <div className="segment-control">
+    <div className="segment-control">
       <button aria-pressed={!browse} className={!browse ? "active" : ""} onClick={() => setBrowse(false)}>문제 풀기</button>
       <button aria-pressed={browse} className={browse ? "active" : ""} onClick={() => setBrowse(true)}>목록 보기</button>
-    </div>}
-    {catalogue ? <KanjiCatalogue vocabulary={props.vocabulary} key={scope} basic={scope === "basic"}/> :
-      browse ? <CourseLibrary key={scope} {...props} targetLevel={level}/> :
-      <Practice key={scope} {...props} level={level}/>}
+    </div>
+    {browse && catalogue ? <KanjiCatalogue vocabulary={scopedWords} kanji={scopedKanji} key={scope}/> :
+      browse ? <CourseLibrary key={scope} {...props} wordList={scopedWords} targetLevel={level} wordFilter={wordFilter}/> :
+      <Practice key={scope} {...props} wordFilter={wordFilter} kanji={scopedKanji} vocabulary={scopedWords} label={label}/>}
   </div>;
 }
 
-function CourseLibrary({ kanji, vocabulary, links, targetLevel }: Props) {
+function CourseLibrary({ kanji, vocabulary, links, targetLevel, wordFilter, wordList }: Props & { wordList: VocabularyRow[]; wordFilter: React.ReactNode }) {
   const [kind, setKind] = useState<"kanji" | "vocabulary">("kanji");
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
@@ -51,8 +69,8 @@ function CourseLibrary({ kanji, vocabulary, links, targetLevel }: Props) {
     [kanji, targetLevel, query]
   );
   const filteredWords = useMemo(() =>
-    vocabulary.filter(v => v.jlpt_level === targetLevel && [v.word,v.reading,v.meaning_ko].join(" ").toLowerCase().includes(query.toLowerCase().trim())),
-    [vocabulary, targetLevel, query]
+    wordList.filter(v => [v.word,v.reading,v.meaning_ko].join(" ").toLowerCase().includes(query.toLowerCase().trim())),
+    [wordList, query]
   );
 
   const selectedKanji = kanji.find(k=>kind==="kanji" && k.id===selected);
@@ -79,7 +97,7 @@ function CourseLibrary({ kanji, vocabulary, links, targetLevel }: Props) {
           {selectedWord.example_ja && <div className="example-box"><p>{selectedWord.example_ja}</p><small>{selectedWord.example_ko}</small></div>}
           <div className="detail-divider"/>
           <h4><BookText size={16}/> 구성 한자</h4>
-          <div className="kanji-chips">{relatedKanji.length?relatedKanji.map(k=><span className="kanji-chip" key={k.id}>{k.character} <small>{k.meaning_ko}</small></span>):<p className="muted-small">연결된 한자가 없어요.</p>}</div>
+          <div className="kanji-chips">{relatedKanji.length?relatedKanji.map(k=><span className="kanji-chip" key={k.id}>{k.character} <small>{k.meaning_ko}{k.jlpt_level && ` · N${k.jlpt_level}`}</small></span>):<p className="muted-small">연결된 한자가 없어요.</p>}</div>
         </> : null}
       </div>;
   return (
@@ -87,8 +105,9 @@ function CourseLibrary({ kanji, vocabulary, links, targetLevel }: Props) {
       <div className="section-head"><div><span className="eyebrow">LIBRARY</span><h2>차곡차곡, 일본어</h2><p>N{targetLevel}의 단어와 한자를 살펴보세요.</p></div></div>
       <div className="segment-control" role="group" aria-label="학습 유형">
         <button type="button" className={kind==="kanji"?"active":""} onClick={()=>{setKind("kanji");setSelected(null);}}>한자 <span>{kanji.filter(k=>k.jlpt_level===targetLevel).length}</span></button>
-        <button type="button" className={kind==="vocabulary"?"active":""} onClick={()=>{setKind("vocabulary");setSelected(null);}}>단어 <span>{vocabulary.filter(v=>v.jlpt_level===targetLevel).length}</span></button>
+        <button type="button" className={kind==="vocabulary"?"active":""} onClick={()=>{setKind("vocabulary");setSelected(null);}}>단어 <span>{wordList.length}</span></button>
       </div>
+      {kind === "vocabulary" && wordFilter}
       <div className="search-field"><Search size={18}/><input type="search" placeholder="한자, 읽기, 한국어로 검색" value={query} onChange={e=>setQuery(e.target.value)} aria-label="한자 단어 검색"/></div>
       <p className="helper-copy">목록의 급수는 학습용 참고 분류이며 JLPT 공식 목록이 아닙니다.</p>
       {kind==="kanji" ? (
@@ -100,7 +119,7 @@ function CourseLibrary({ kanji, vocabulary, links, targetLevel }: Props) {
       ) : (
         <div className="word-list">
           {filteredWords.map(v=><Fragment key={v.id}><button type="button" className={`word-row ${selected===v.id?"chosen":""}`} onClick={()=>setSelected(selected===v.id?null:v.id)} id={selected===v.id?"selected-trigger":undefined} aria-controls={selected===v.id?"selected-detail":undefined} aria-expanded={selected===v.id}>
-            <span className="word-main"><strong>{v.word}</strong><span>{v.reading}</span></span><span className="word-right">{v.meaning_ko}<ChevronDown size={16}/></span>
+            <span className="word-main"><strong>{v.word}</strong><span>{v.reading} · N{v.jlpt_level}</span></span><span className="word-right">{v.meaning_ko}<ChevronDown size={16}/></span>
           </button>{selected===v.id && detail}</Fragment>)}
         </div>
       )}

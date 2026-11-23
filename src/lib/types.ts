@@ -4,13 +4,16 @@ export type ReviewMode = "meaning" | "reading";
 
 export type Profile = { id: string; nickname: string; target_level: Level; daily_new_goal: number; daily_review_goal: number; };
 
+export type CatalogueEntry = { character: string; basic: boolean; reading: string; meaning: string; meaning_ko: string };
+
 export type KanjiRow = {
   id: string;
   character: string;
   meaning_ko: string;
   onyomi: string[];
   kunyomi: string[];
-  jlpt_level: Level;
+  jlpt_level: Level | null;
+  catalogue?: CatalogueEntry;
 };
 
 export type VocabularyRow = {
@@ -47,7 +50,8 @@ export type StudyCard = {
   itemId: string;
   itemType: ItemType;
   reviewMode: ReviewMode;
-  level: Level;
+  level: Level | null;
+  alternativeAnswer?: string;
   front: string;
   answer: string;
   details: string;

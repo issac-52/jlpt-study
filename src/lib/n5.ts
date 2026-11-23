@@ -1,3 +1,5 @@
+import catalogue from "../../public/data/joyo.json";
+import { mergeCatalogue } from "./catalogue";
 import examples from "../data/example-words.json";
 import graded from "../data/graded.json";
 import course from "../data/n5.json";
@@ -24,6 +26,7 @@ export function includeN5(kanji: KanjiRow[], vocabulary: VocabularyRow[], links:
       example_ko: hasExample ? existing.example_ko : entry.example_ko,
     });
   }
+  mergeCatalogue(characters, catalogue);
   const relations = new Map(links.map(link => [link.vocabulary_id + ":" + link.kanji_id, link]));
   for (const word of words.values()) {
     Array.from(word.word).forEach((character, index) => {

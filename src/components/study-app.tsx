@@ -220,6 +220,12 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
     setReviewResult(null);
   }
 
+  function retryReview() {
+    if (!currentCard || !reviewResult || reviewResult.correct) return;
+    setQueue(cards => [...cards, currentCard]);
+    nextReview();
+  }
+
   async function saveGoals(goals: Goals) {
     const { data, error } = await client.from("profiles").update(goals).eq("id", userId).select("*").single();
     if (error) throw error;
@@ -282,7 +288,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
           <p className="helper-copy">JLPT 급수는 학습용 참고 분류입니다.</p>
         </section>}
         {tab==="learn" && <LearningView onScore={score} saving={saving} kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
-        {tab==="review" && <ReviewView key={currentCard?.key ?? "summary"} sessionLabel={sessionKind==="new"?"새 학습":sessionKind==="missed"?"오답 복습":"복습"} card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} result={reviewResult} saving={saving} finished={finished} onSubmit={submitReview} onNext={nextReview} onStart={startReview}/>}
+        {tab==="review" && <ReviewView key={`${reviewIndex}-${currentCard?.key ?? "summary"}`} sessionLabel={sessionKind==="new"?"새 학습":sessionKind==="missed"?"오답 복습":"복습"} card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} result={reviewResult} saving={saving} finished={finished} onSubmit={submitReview} onNext={nextReview} onRetry={retryReview} onStart={startReview}/>}
       </>}
     </main>
     <nav className="bottom-nav" aria-label="주 메뉴">

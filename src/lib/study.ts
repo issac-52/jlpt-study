@@ -7,17 +7,17 @@ function normalize(text: string) {
     .replace(/[ァ-ヶ]/g, kana => String.fromCharCode(kana.charCodeAt(0) - 96));
 }
 
-export function matchesAnswer(card: Pick<StudyCard, "answer" | "itemType">, input: string) {
+export function matchesAnswer(card: Pick<StudyCard, "answer" | "itemType" | "alternativeAnswer">, input: string) {
   const submitted = normalize(input);
   if (!submitted) return false;
-  const answers = card.answer.split(/[·,;/]/);
+  const answers = [card.answer, card.alternativeAnswer ?? ""].flatMap(answer => answer.split(/[·,;/]/));
   if (card.itemType === "kanji") {
     for (const meaning of [...answers]) {
       const match = meaning.trim().match(/^(.+) [가-힣]$/);
       if (match) answers.push(match[1]);
     }
   }
-  return answers.some(answer => normalize(answer) === submitted);
+  return [...answers, card.answer, card.alternativeAnswer ?? ""].some(answer => normalize(answer) === submitted);
 }
 
 export function cardKey(itemType: string, itemId: string, mode: ReviewMode): string {
@@ -33,8 +33,9 @@ export function makeCards(kanji: KanjiRow[], vocabulary: VocabularyRow[]): Study
       reviewMode: "meaning" as const,
       level: k.jlpt_level,
       front: k.character,
-      answer: k.meaning_ko,
-      details: [k.onyomi.join(" · "), k.kunyomi.join(" · ")].filter(Boolean).join(" / "),
+      answer: k.catalogue?.meaning_ko ?? k.meaning_ko,
+      alternativeAnswer: k.meaning_ko,
+      details: k.catalogue?.reading ?? [k.onyomi.join(" · "), k.kunyomi.join(" · ")].filter(Boolean).join(" / "),
     })),
     ...vocabulary.flatMap((v) => ([
       { key: cardKey("vocabulary", v.id, "reading"), itemId: v.id, itemType: "vocabulary" as const, reviewMode: "reading" as const, level: v.jlpt_level, front: v.word, answer: v.reading, details: v.meaning_ko },
