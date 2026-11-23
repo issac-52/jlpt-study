@@ -1,4 +1,4 @@
-export type Level = 5 | 4 | 3 | 2;
+export type Level = 5 | 4 | 3 | 2 | 1;
 export type ItemType = "kanji" | "vocabulary";
 export type ReviewMode = "meaning" | "reading";
 

@@ -1,0 +1,119 @@
+[
+  {
+    "jlpt_level": 1,
+    "word": "把握",
+    "reading": "はあく",
+    "meaning_ko": "파악",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "dfccf1ab-086c-5430-ac28-06a8ccf2b45f"
+  },
+  {
+    "jlpt_level": 1,
+    "word": "撤回",
+    "reading": "てっかい",
+    "meaning_ko": "철회",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "6e6e119c-f4b9-5cf9-a7e3-723bb47f8334"
+  },
+  {
+    "jlpt_level": 1,
+    "word": "妥協",
+    "reading": "だきょう",
+    "meaning_ko": "타협",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "9344bc80-a09a-5006-9474-25f637842d4f"
+  },
+  {
+    "jlpt_level": 1,
+    "word": "促進",
+    "reading": "そくしん",
+    "meaning_ko": "촉진",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "a10d9b46-0ed6-53e3-91d4-ad966c106e5b"
+  },
+  {
+    "jlpt_level": 1,
+    "word": "繁栄",
+    "reading": "はんえい",
+    "meaning_ko": "번영",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "1161514e-6632-5aab-bb3a-4b15c24413b3"
+  },
+  {
+    "jlpt_level": 2,
+    "word": "応募",
+    "reading": "おうぼ",
+    "meaning_ko": "응모",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "cfa21e04-17eb-54ce-9ecb-d024894f1ebe"
+  },
+  {
+    "jlpt_level": 2,
+    "word": "承認",
+    "reading": "しょうにん",
+    "meaning_ko": "승인",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "e7c219af-72f2-56e8-b843-f8d6b4d2bc09"
+  },
+  {
+    "jlpt_level": 2,
+    "word": "評価",
+    "reading": "ひょうか",
+    "meaning_ko": "평가",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "3336eb03-5e9a-597c-93de-14de35e4cbe7"
+  },
+  {
+    "jlpt_level": 3,
+    "word": "予定",
+    "reading": "よてい",
+    "meaning_ko": "예정",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "fcc8d9f9-1900-559a-9839-b5a4e51884c4"
+  },
+  {
+    "jlpt_level": 3,
+    "word": "連絡",
+    "reading": "れんらく",
+    "meaning_ko": "연락",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "f80a9f86-0108-5eb4-962d-7ce03e5914dc"
+  },
+  {
+    "jlpt_level": 3,
+    "word": "遅刻",
+    "reading": "ちこく",
+    "meaning_ko": "지각",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "d13a3bc2-0f0d-515b-a841-97a6f26ca9ee"
+  },
+  {
+    "jlpt_level": 4,
+    "word": "家族",
+    "reading": "かぞく",
+    "meaning_ko": "가족",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "0d743657-9edf-56b7-9ad4-263f5b9e0d6b"
+  },
+  {
+    "jlpt_level": 4,
+    "word": "料理",
+    "reading": "りょうり",
+    "meaning_ko": "요리",
+    "example_ja": null,
+    "example_ko": null,
+    "id": "f4a8387c-c0c8-5c5a-922f-114961ee3016"
+  }
+]

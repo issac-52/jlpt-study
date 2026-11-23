@@ -1,16 +1,22 @@
+import examples from "../data/example-words.json";
+import graded from "../data/graded.json";
 import course from "../data/n5.json";
-import type { KanjiRow, VocabularyKanjiRow, VocabularyRow } from "./types";
+import type { KanjiRow, Level, VocabularyKanjiRow, VocabularyRow } from "./types";
 
 export function includeN5(kanji: KanjiRow[], vocabulary: VocabularyRow[], links: VocabularyKanjiRow[]) {
   const characters = new Map(kanji.map(row => [row.character, row]));
   const words = new Map(vocabulary.map(row => [row.word + ":" + row.reading, row]));
+  for (const entry of graded) {
+    const existing = characters.get(entry.character);
+    characters.set(entry.character, { ...entry, ...existing, jlpt_level: entry.jlpt_level as Level });
+  }
   for (const entry of course.kanji) {
     const existing = characters.get(entry.character);
-    characters.set(entry.character, { ...(existing ?? entry), jlpt_level: 5 });
+    characters.set(entry.character, { ...entry, id: existing?.id ?? entry.id, jlpt_level: 5 });
   }
-  for (const entry of course.vocabulary) {
+  for (const entry of [...course.vocabulary, ...examples]) {
     const key = entry.word + ":" + entry.reading;
-    words.set(key, { ...(words.get(key) ?? entry), jlpt_level: 5 });
+    words.set(key, { ...(words.get(key) ?? entry), jlpt_level: entry.jlpt_level as Level });
   }
   const relations = new Map(links.map(link => [link.vocabulary_id + ":" + link.kanji_id, link]));
   for (const word of words.values()) {

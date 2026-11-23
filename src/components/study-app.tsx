@@ -29,7 +29,21 @@ function dayStreak(logs: ReviewLog[], nowMs: number) {
   }
   return count;
 }
-const levels: Level[] = [5,4,3,2];
+const levels: Level[] = [5,4,3,2,1];
+
+async function loadReviewState(client: SupabaseClient, userId: string) {
+  const rows: ReviewRow[] = [];
+  const pageSize = 500;
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await client.from("review_state")
+      .select("user_id,item_type,item_id,review_mode,streak,interval_days,due_at,updated_at")
+      .eq("user_id", userId).order("item_type").order("item_id").order("review_mode")
+      .range(offset, offset + pageSize - 1);
+    if (error) throw error;
+    rows.push(...data as ReviewRow[]);
+    if (data.length < pageSize) return rows;
+  }
+}
 
 export default function StudyApp() {
   const client = useMemo(() => getSupabase(), []);
@@ -81,13 +95,13 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
         client.from("kanji").select("id,character,meaning_ko,onyomi,kunyomi,jlpt_level").order("character"),
         client.from("vocabulary").select("id,word,reading,meaning_ko,jlpt_level,example_ja,example_ko").order("word"),
         client.from("vocabulary_kanji").select("vocabulary_id,kanji_id,position"),
-        client.from("review_state").select("user_id,item_type,item_id,review_mode,streak,interval_days,due_at,updated_at").eq("user_id",userId),
+        loadReviewState(client, userId),
         client.from("review_logs").select("reviewed_at").eq("user_id",userId).gte("reviewed_at", lastMonth).order("reviewed_at",{ascending:false}).limit(2000),
         client.from("friend_requests").select("id,sender_id,recipient_id,status"),
         client.rpc("get_friend_progress"),
         client.rpc("get_pending_friend_names"),
       ]);
-      const firstError = [p,k,v,link,rev,log,req,stat,names].find(result=>result.error)?.error;
+      const firstError = [p,k,v,link,log,req,stat,names].find(result=>result.error)?.error;
       if (firstError) throw firstError;
       if (!p.data) throw new Error("프로필이 없어요. 데이터베이스 초기화 상태를 확인해 주세요.");
       setProfile(p.data as Profile);
@@ -95,7 +109,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
       setKanji(content.kanji);
       setVocabulary(content.vocabulary);
       setLinks(content.links);
-      setReviewRows((rev.data ?? []) as ReviewRow[]);
+      setReviewRows(rev);
       setLogs((log.data ?? []) as ReviewLog[]);
       setRequests((req.data ?? []) as FriendRequest[]);
       setStats((stat.data ?? []) as FriendStat[]);
@@ -147,18 +161,19 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
     setTab("review");
   }
 
-  async function score(correct:boolean) {
-    if(!currentCard || saving) return;
+  async function score(correct:boolean, practiceCard?: StudyCard) {
+    const card = practiceCard ?? currentCard;
+    if(!card || saving) return false;
     setSaving(true);
     setError("");
     try {
-      const previous=reviewsByKey.get(currentCard.key);
+      const previous=reviewsByKey.get(card.key);
       const next=getNextReview(previous,correct);
       const row:ReviewRow={
         user_id:userId,
-        item_type:currentCard.itemType,
-        item_id:currentCard.itemId,
-        review_mode:currentCard.reviewMode,
+        item_type:card.itemType,
+        item_id:card.itemId,
+        review_mode:card.reviewMode,
         ...next,
       };
       const {error:saveError}=await client.from("review_state").upsert(row,{onConflict:"user_id,item_type,item_id,review_mode"});
@@ -166,19 +181,20 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
       // The progress save is authoritative. A logging error must not cause duplicate scoring.
       const {error:logError}=await client.from("review_logs").insert({
         user_id:userId,
-        item_type:currentCard.itemType,
-        item_id:currentCard.itemId,
-        review_mode:currentCard.reviewMode,
+        item_type:card.itemType,
+        item_id:card.itemId,
+        review_mode:card.reviewMode,
         correct,
       });
-      setReviewRows(existing=>[...existing.filter(r=>cardKey(r.item_type,r.item_id,r.review_mode)!==currentCard.key),row]);
+      setReviewRows(existing=>[...existing.filter(r=>cardKey(r.item_type,r.item_id,r.review_mode)!==card.key),row]);
       if (!logError) setLogs(existing=>[{reviewed_at:new Date().toISOString()},...existing]);
       else setError("복습 진도는 저장했지만 통계 기록에 실패했어요. 새로고침 후 확인해 주세요.");
       setNowMs(Date.now());
-      setReviewIndex(i=>i+1);
-      setRevealed(false);
+      if (!practiceCard) { setReviewIndex(i=>i+1); setRevealed(false); }
+      return true;
     } catch(cause) {
       setError(cause instanceof Error?cause.message:"복습 결과를 저장하지 못했어요.");
+      return false;
     } finally {setSaving(false);}
   }
 
@@ -248,7 +264,7 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
           <div className="weekly-panel"><CalendarCheck2 size={18}/><span>최근 7일 동안 <strong>{lastWeekCount}번</strong> 복습했어요.</span></div>
           <p className="helper-copy">JLPT 급수는 학습용 참고 분류입니다.</p>
         </section>}
-        {tab==="learn" && <LearningView kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
+        {tab==="learn" && <LearningView onScore={(card,correct)=>score(correct,card)} saving={saving} kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
         {tab==="review" && <ReviewView card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} revealed={revealed} saving={saving} finished={finished} onReveal={()=>setRevealed(true)} onScore={correct=>void score(correct)} onStart={startReview}/>}
         {tab==="friends" && profile && <FriendsView userId={userId} profile={profile} requests={requests} people={people} stats={stats} onSend={sendFriend} onRespond={respondFriend} onRefresh={refresh}/>}
       </>}
