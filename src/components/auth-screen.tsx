@@ -49,7 +49,7 @@ export default function AuthScreen({ client }: { client: SupabaseClient }) {
       <div className="auth-intro">
         <span className="eyebrow"><Sparkles size={14} /> 오늘의 작은 배움</span>
         <h1>한자 하나에서<br/><em>단어 열 개로.</em></h1>
-        <p>한자의 뜻을 이해하고, 단어와 문장으로 연결해 기억해요. 친구와 함께하되 학습 기록은 각자 따로.</p>
+        <p>한자의 뜻을 이해하고, 단어와 문장으로 연결해 기억해요. 복습 기록은 내 계정에 저장돼요.</p>
       </div>
       <div className="auth-card">
         <div className="auth-switch" role="group" aria-label="로그인 모드">

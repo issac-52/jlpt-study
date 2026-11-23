@@ -1,4 +1,4 @@
-# Kotoba — 둘이 함께하는 일본어 학습 앱
+# Kotoba — 계정별 일본어 학습 앱
 
 iPhone과 Galaxy에서 동일하게 사용할 수 있는 모바일 우선 JLPT 학습 PWA입니다.
 
@@ -6,7 +6,6 @@ iPhone과 Galaxy에서 동일하게 사용할 수 있는 모바일 우선 JLPT �
 - 각자 이메일/비밀번호 계정으로 로그인하고 진도, 정답/오답, 간격 반복(SRS) 복습을 독립 관리
 - 한자 ↔ 관련 단어 ↔ 예문을 연결해 외우기
 - JLPT N5~N2로 확장 가능한 공통 콘텐츠 구조 (공식 JLPT 급수별 어휘·한자 목록은 제공되지 않으므로 난이도 분류는 학습용)
-- 친구 초대 코드, 상호 동의 후 학습 통계 비교
 - Next.js + TypeScript + Supabase(Postgres/Auth/RLS) + PWA, Vercel 배포
 
 ## 문서

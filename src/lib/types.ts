@@ -2,8 +2,7 @@ export type Level = 5 | 4 | 3 | 2 | 1;
 export type ItemType = "kanji" | "vocabulary";
 export type ReviewMode = "meaning" | "reading";
 
-export type Profile = { id: string; nickname: string; target_level: Level; friend_code: string; };
-export type FriendStat = { user_id: string; nickname: string; kanji_learned: number; vocab_learned: number; reviews_last_7d: number; };
+export type Profile = { id: string; nickname: string; target_level: Level; };
 
 export type KanjiRow = {
   id: string;
@@ -50,11 +49,4 @@ export type StudyCard = {
   front: string;
   answer: string;
   details: string;
-};
-
-export type FriendRequest = {
-  id: string;
-  sender_id: string;
-  recipient_id: string;
-  status: "pending" | "accepted" | "rejected";
 };

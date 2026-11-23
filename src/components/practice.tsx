@@ -31,6 +31,7 @@ export default function Practice({ kanji, vocabulary, level, saving, onScore }: 
   const [mode, setMode] = useState<keyof typeof modes>("kanji");
   const [queue, setQueue] = useState<StudyCard[]>([]);
   const [index, setIndex] = useState(0);
+  const [missed, setMissed] = useState<StudyCard[]>([]);
   const [hits, setHits] = useState(0);
   const [input, setInput] = useState("");
   const [checked, setChecked] = useState(false);
@@ -44,15 +45,20 @@ export default function Practice({ kanji, vocabulary, level, saving, onScore }: 
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    setQueue(shuffled.slice(0, 10)); setIndex(0); setHits(0); setInput(""); setChecked(false);
+    beginRound(shuffled.slice(0, 10));
+  }
+  function beginRound(selected: StudyCard[]) {
+    setMissed([]); setQueue(selected); setIndex(0); setHits(0); setInput(""); setChecked(false);
   }
   async function next(correct: boolean) {
     if (!await onScore(card, correct)) return;
+    if (!correct) setMissed(previous => [...previous, card]);
     setHits(count => count + Number(correct)); setIndex(i => i + 1); setInput(""); setChecked(false);
   }
   if (!card) return <section className="white-panel">
     <h2>{queue.length ? "연습 완료" : `N${level} 문제 풀기`}</h2>
     {queue.length > 0 && <p role="status">{queue.length}문제 중 {hits}문제 정답</p>}
+    {missed.length > 0 && <button className="primary-button" onClick={() => beginRound(missed)}>이번 오답 {missed.length}개 다시 풀기</button>}
     <label className="field-label">문제 유형<select className="input-field" value={mode} onChange={e => setMode(e.target.value as keyof typeof modes)}>
       {Object.entries(modes).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label>
     <button className="primary-button" onClick={start} disabled={!pool.length}>{pool.length ? `${Math.min(10,pool.length)}문제 시작` : "준비된 문제가 없어요"}</button>

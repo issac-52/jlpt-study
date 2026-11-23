@@ -2,17 +2,16 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { SupabaseClient, User } from "@supabase/supabase-js";
-import { ArrowRight, BookOpenText, CalendarCheck2, ChevronRight, CircleHelp, Flame, House, Layers, LogOut, RotateCcw, Settings2, Sparkles, UsersRound } from "lucide-react";
+import { ArrowRight, BookOpenText, CalendarCheck2, ChevronRight, CircleHelp, Flame, House, Layers, LogOut, RotateCcw, Settings2, Sparkles } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { cardKey, getNextReview, isDue, makeCards } from "@/lib/study";
-import type { FriendRequest, FriendStat, KanjiRow, Level, Profile, ReviewRow, StudyCard, VocabularyKanjiRow, VocabularyRow } from "@/lib/types";
+import type { KanjiRow, Level, Profile, ReviewRow, StudyCard, VocabularyKanjiRow, VocabularyRow } from "@/lib/types";
 import AuthScreen from "./auth-screen";
 import { includeN5 } from "@/lib/n5";
 import LearningView from "./learning-view";
 import ReviewView from "./review-view";
-import FriendsView from "./friends-view";
 
-type Tab = "home" | "learn" | "review" | "friends";
+type Tab = "home" | "learn" | "review";
 type ReviewLog = { reviewed_at: string };
 
 function dayKey(date: Date) {
@@ -58,7 +57,7 @@ export default function StudyApp() {
     return () => subscription.unsubscribe();
   }, [client]);
 
-  if (!client) return <div className="setup-page"><div className="logo-mark"><BookOpenText size={25}/></div><span className="eyebrow">KOTOBA / SETUP</span><h1>이제 첫 페이지가<br/>준비됐어요.</h1><p>Supabase를 연결하면 회원가입, 한자·단어 학습과 친구 기능을 이용할 수 있어요.</p><div className="setup-code">.env.local<br/>NEXT_PUBLIC_SUPABASE_URL=...<br/>NEXT_PUBLIC_SUPABASE_ANON_KEY=...</div><p className="helper-copy">README.md에 있는 SQL 마이그레이션도 먼저 실행해 주세요.</p></div>;
+  if (!client) return <div className="setup-page"><div className="logo-mark"><BookOpenText size={25}/></div><span className="eyebrow">KOTOBA / SETUP</span><h1>이제 첫 페이지가<br/>준비됐어요.</h1><p>Supabase를 연결하면 회원가입, 한자·단어 학습과 개인 복습 기록을 이용할 수 있어요.</p><div className="setup-code">.env.local<br/>NEXT_PUBLIC_SUPABASE_URL=...<br/>NEXT_PUBLIC_SUPABASE_ANON_KEY=...</div><p className="helper-copy">README.md에 있는 SQL 마이그레이션도 먼저 실행해 주세요.</p></div>;
   if(!authReady) return <div className="loading-page"><div className="logo-mark"><BookOpenText size={27}/></div><p>로그인 상태를 확인하고 있어요…</p></div>;
   if(!user) return <AuthScreen client={client}/>;
 
@@ -78,9 +77,6 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
   const [links, setLinks] = useState<VocabularyKanjiRow[]>([]);
   const [reviewRows, setReviewRows] = useState<ReviewRow[]>([]);
   const [logs, setLogs] = useState<ReviewLog[]>([]);
-  const [requests, setRequests] = useState<FriendRequest[]>([]);
-  const [people, setPeople] = useState<{id:string;nickname:string}[]>([]);
-  const [stats, setStats] = useState<FriendStat[]>([]);
   const [queue, setQueue] = useState<StudyCard[]>([]);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -90,18 +86,15 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
     setLoading(true);
     try {
       const lastMonth = new Date(Date.now() - 35 * 86_400_000).toISOString();
-      const [p, k, v, link, rev, log, req, stat, names] = await Promise.all([
-        client.from("profiles").select("id,nickname,target_level,friend_code").eq("id",userId).single(),
+      const [p, k, v, link, rev, log] = await Promise.all([
+        client.from("profiles").select("id,nickname,target_level").eq("id",userId).single(),
         client.from("kanji").select("id,character,meaning_ko,onyomi,kunyomi,jlpt_level").order("character"),
         client.from("vocabulary").select("id,word,reading,meaning_ko,jlpt_level,example_ja,example_ko").order("word"),
         client.from("vocabulary_kanji").select("vocabulary_id,kanji_id,position"),
         loadReviewState(client, userId),
         client.from("review_logs").select("reviewed_at").eq("user_id",userId).gte("reviewed_at", lastMonth).order("reviewed_at",{ascending:false}).limit(2000),
-        client.from("friend_requests").select("id,sender_id,recipient_id,status"),
-        client.rpc("get_friend_progress"),
-        client.rpc("get_pending_friend_names"),
       ]);
-      const firstError = [p,k,v,link,log,req,stat,names].find(result=>result.error)?.error;
+      const firstError = [p,k,v,link,log].find(result=>result.error)?.error;
       if (firstError) throw firstError;
       if (!p.data) throw new Error("프로필이 없어요. 데이터베이스 초기화 상태를 확인해 주세요.");
       setProfile(p.data as Profile);
@@ -111,9 +104,6 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
       setLinks(content.links);
       setReviewRows(rev);
       setLogs((log.data ?? []) as ReviewLog[]);
-      setRequests((req.data ?? []) as FriendRequest[]);
-      setStats((stat.data ?? []) as FriendStat[]);
-      setPeople((names.data ?? []) as { id: string; nickname: string }[]);
       setNowMs(Date.now());
       setError("");
     } catch (cause) {
@@ -134,9 +124,32 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
   }, [refresh]);
 
   const targetLevel=profile?.target_level ?? 5;
-  const cards=useMemo(()=>makeCards(kanji,vocabulary).filter(c=>c.level>=targetLevel),[kanji,vocabulary,targetLevel]);
+  const allCards = useMemo(() => makeCards(kanji, vocabulary), [kanji, vocabulary]);
+  const cards = useMemo(() => allCards.filter(c => c.level >= targetLevel), [allCards, targetLevel]);
   const reviewsByKey=useMemo(()=>new Map(reviewRows.map(r=>[cardKey(r.item_type,r.item_id,r.review_mode),r])),[reviewRows]);
-  const dueCards=useMemo(()=>cards.filter(c=>isDue(reviewsByKey.get(c.key))),[cards,reviewsByKey]);
+  const missedCards = useMemo(() => allCards
+    .filter(card => reviewsByKey.get(card.key)?.streak === 0)
+    .sort((a, b) => Date.parse(reviewsByKey.get(a.key)!.updated_at) - Date.parse(reviewsByKey.get(b.key)!.updated_at)),
+    [allCards, reviewsByKey]);
+  useEffect(() => {
+    const nextDue = reviewRows.reduce((next, row) => {
+      const due = Date.parse(row.due_at);
+      return due > nowMs ? Math.min(next, due) : next;
+    }, Infinity);
+    const updateClock = () => setNowMs(Date.now());
+    const timer = Number.isFinite(nextDue)
+      ? window.setTimeout(updateClock, Math.min(2_147_483_647, Math.max(0, nextDue - Date.now())))
+      : undefined;
+    document.addEventListener("visibilitychange", updateClock);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener("visibilitychange", updateClock);
+    };
+  }, [reviewRows, nowMs]);
+  const dueCards = useMemo(() => {
+    const now = new Date(nowMs);
+    return cards.filter(card => isDue(reviewsByKey.get(card.key), now));
+  }, [cards, reviewsByKey, nowMs]);
   const kanjiLearned=new Set(reviewRows.filter(r=>r.item_type==="kanji").map(r=>r.item_id)).size;
   const wordsLearned=new Set(reviewRows.filter(r=>r.item_type==="vocabulary").map(r=>r.item_id)).size;
   const streak=dayStreak(logs,nowMs);
@@ -155,7 +168,12 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
       if (!aa && bb) return 1;
       return (aa??"").localeCompare(bb??"");
     });
-    setQueue(due.slice(0,12));
+    beginReview(due);
+  }
+
+  function beginReview(selected: StudyCard[]) {
+    setError("");
+    setQueue(selected.slice(0, 12));
     setReviewIndex(0);
     setRevealed(false);
     setTab("review");
@@ -207,19 +225,6 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
     setReviewIndex(0);
   }
 
-  async function sendFriend(code:string):Promise<string> {
-    const {data,error:rpcError}=await client.rpc("request_friend_by_code",{p_code:code});
-    if(rpcError) throw rpcError;
-    await refresh();
-    return String(data);
-  }
-  async function respondFriend(id:string,accept:boolean) {
-    const {error:replyError}=await client.from("friend_requests").update({status:accept?"accepted":"rejected"})
-      .eq("id",id).eq("recipient_id",userId).eq("status","pending");
-    if(replyError) throw replyError;
-    await refresh();
-  }
-
   async function signOut() {
     const {error:signOutError}=await client.auth.signOut();
     if(signOutError) setError(signOutError.message);
@@ -259,21 +264,22 @@ function SignedInStudyApp({ client, user }: { client: SupabaseClient; user: User
           <div className="review-cta"><div className="review-cta-top"><span className="review-cta-icon"><RotateCcw size={20}/></span><span className="eyebrow">SPACED REPETITION</span></div><div className="review-cta-body"><div><h3>오늘의 복습</h3><p>기억이 사라지기 전에 다시 만나기</p></div><span className="due-bubble">{dueCards.length}<small>개</small></span></div><button type="button" className="cta-link" onClick={startReview} disabled={dueCards.length===0}>{dueCards.length===0?"복습 완료":"복습 시작하기"} <ArrowRight size={17}/></button></div>
           <div className="feature-grid">
             <button className="feature-card" type="button" onClick={()=>setTab("learn")}><span className="feature-glyph">字</span><strong>한자와 단어</strong><small>연결해서 기억하기</small><ChevronRight size={17}/></button>
-            <button className="feature-card mint" type="button" onClick={()=>setTab("friends")}><span className="feature-glyph"><UsersRound size={33}/></span><strong>친구와 함께</strong><small>함께 만드는 학습 습관</small><ChevronRight size={17}/></button>
+            <button className="feature-card mint" type="button" disabled={!missedCards.length || saving} onClick={() => beginReview(missedCards)}>
+              <span className="feature-glyph"><RotateCcw size={33}/></span><strong>오답 다시 보기</strong>
+              <small>{missedCards.length ? `다시 떠올릴 카드 ${missedCards.length}개` : "다시 볼 오답이 없어요"}</small><ChevronRight size={17}/>
+            </button>
           </div>
           <div className="weekly-panel"><CalendarCheck2 size={18}/><span>최근 7일 동안 <strong>{lastWeekCount}번</strong> 복습했어요.</span></div>
           <p className="helper-copy">JLPT 급수는 학습용 참고 분류입니다.</p>
         </section>}
         {tab==="learn" && <LearningView onScore={(card,correct)=>score(correct,card)} saving={saving} kanji={kanji} vocabulary={vocabulary} links={links} targetLevel={targetLevel}/>}
         {tab==="review" && <ReviewView card={currentCard} index={reviewIndex} total={queue.length} dueCount={dueCards.length} revealed={revealed} saving={saving} finished={finished} onReveal={()=>setRevealed(true)} onScore={correct=>void score(correct)} onStart={startReview}/>}
-        {tab==="friends" && profile && <FriendsView userId={userId} profile={profile} requests={requests} people={people} stats={stats} onSend={sendFriend} onRespond={respondFriend} onRefresh={refresh}/>}
       </>}
     </main>
     <nav className="bottom-nav" aria-label="주 메뉴">
       <button type="button" className={tab==="home"?"active":""} onClick={()=>setTab("home")} aria-current={tab==="home"?"page":undefined}><House size={21}/><span>홈</span></button>
       <button type="button" className={tab==="learn"?"active":""} onClick={()=>setTab("learn")} aria-current={tab==="learn"?"page":undefined}><BookOpenText size={21}/><span>학습</span></button>
       <button type="button" className={tab==="review"?"active":""} onClick={()=>setTab("review")} aria-current={tab==="review"?"page":undefined}><RotateCcw size={21}/><span>복습</span></button>
-      <button type="button" className={tab==="friends"?"active":""} onClick={()=>setTab("friends")} aria-current={tab==="friends"?"page":undefined}><UsersRound size={21}/><span>친구</span></button>
     </nav>
   </div>;
 }
